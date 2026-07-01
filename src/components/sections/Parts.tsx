@@ -32,7 +32,7 @@ export default function Parts() {
         <SectionHeader
           tag="Genuine Parts"
           title="Your Source for OEM Truck Parts"
-          subtitle="Direct from the manufacturer — genuine TrukSino parts shipped worldwide with full traceability, OEM warranty, and dealer pricing for fleets of any size."
+          subtitle="Direct from the manufacturer — genuine SINOTRUK parts shipped worldwide with full traceability, OEM warranty, and dealer pricing for fleets of any size."
           center
         />
 

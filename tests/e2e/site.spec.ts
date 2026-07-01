@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("Homepage", () => {
   test("loads and shows hero section", async ({ page }) => {
     await page.goto("/");
-    await expect(page).toHaveTitle(/TrukSino International/);
+    await expect(page).toHaveTitle(/SINOTRUK International/);
     // Hero should be visible
     await expect(page.locator("#home")).toBeVisible();
   });
@@ -33,7 +33,7 @@ test.describe("Product Browsing Flow", () => {
   test("browse products → category → detail page", async ({ page }) => {
     // Step 1: Go to products page
     await page.goto("/products");
-    await expect(page).toHaveTitle(/Products.*TrukSino/);
+    await expect(page).toHaveTitle(/Products.*SINOTRUK/);
 
     // Step 2: Click on Heavy Truck category
     await page.goto("/products/heavy-truck");
@@ -106,7 +106,7 @@ test.describe("SEO", () => {
     const response = await page.goto("/sitemap.xml");
     expect(response?.status()).toBe(200);
     const content = await page.textContent("body");
-    expect(content).toContain("truksino.com");
+    expect(content).toContain("sinotruk.com");
     expect(content).toContain("/products/heavy-truck");
   });
 
@@ -133,7 +133,7 @@ test.describe("Sub-page Navigation", () => {
       "/about/who-we-are",
       "/about/our-journey",
       "/news",
-      "/news/truksino-ts9-dump-truck-africa-launch",
+      "/news/sinotruk-ts9-dump-truck-africa-launch",
       "/video",
       "/parts",
       "/parts/engine",

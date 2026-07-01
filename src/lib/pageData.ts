@@ -157,14 +157,14 @@ export const allProducts: ProductData[] = [
   },
   {
     id: "ev-cargo-6x4",
-    name: "TrukSino EV Cargo 6×4",
-    slug: "truksino-ev-cargo-6x4",
+    name: "SINOTRUK EV Cargo 6×4",
+    slug: "sinotruk-ev-cargo-6x4",
     category: "New Energy Vehicle",
     categorySlug: "new-energy-vehicle",
     subCategory: "Electric Truck",
     image: "/images/product-electric-truck.png",
     gallery: [
-      { src: "/images/product-electric-truck.png", alt: "TrukSino EV Cargo Truck" },
+      { src: "/images/product-electric-truck.png", alt: "SINOTRUK EV Cargo Truck" },
     ],
     excerpt: "Zero-emission heavy hauler — 300 km range, 350 kWh battery, and fast-charge capability for sustainable fleet operations.",
     badge: "New",
@@ -176,7 +176,7 @@ export const allProducts: ProductData[] = [
       { label: "GVW", value: "25 tons" },
       { label: "Drive Type", value: "6×4" },
     ],
-    description: "The TrukSino EV Cargo 6×4 represents the future of heavy-duty transport. Its 350 kWh LFP battery delivers 300 km of real-world range, while 240 kW DC fast charging enables a 10–80% top-up in just 90 minutes. Zero tailpipe emissions make it ideal for urban logistics zones and port operations.",
+    description: "The SINOTRUK EV Cargo 6×4 represents the future of heavy-duty transport. Its 350 kWh LFP battery delivers 300 km of real-world range, while 240 kW DC fast charging enables a 10–80% top-up in just 90 minutes. Zero tailpipe emissions make it ideal for urban logistics zones and port operations.",
     features: [
       { title: "Fast Charging", description: "240 kW DC fast charging capability enables depot-based opportunity charging during driver breaks." },
       { title: "Regenerative Braking", description: "Multi-stage regenerative braking recovers up to 30% of kinetic energy, extending range in stop-start urban cycles." },
@@ -216,23 +216,23 @@ export interface NewsArticleData {
 export const allNews: NewsArticleData[] = [
   {
     id: "1",
-    title: "TrukSino Launches Next-Gen TS9 Dump Truck for African Mining Markets",
-    slug: "truksino-ts9-dump-truck-africa-launch",
+    title: "SINOTRUK Launches Next-Gen TS9 Dump Truck for African Mining Markets",
+    slug: "sinotruk-ts9-dump-truck-africa-launch",
     date: "June 18, 2026",
     excerpt: "The TS9 features a reinforced 30-ton payload body, upgraded cooling for tropical conditions, and integrated fleet management telematics.",
     image: "/images/product-dump-truck.png",
     content: `<h2>Introducing the TS9: Purpose-Built for African Mining</h2>
-<p>TrukSino International today announced the launch of the TS9 dump truck, a next-generation heavy-duty vehicle designed specifically for the demanding conditions of African mining operations. The TS9 represents a significant evolution from its predecessor, incorporating feedback from fleet operators across Nigeria, Ghana, Zambia, and the Democratic Republic of Congo.</p>
+<p>SINOTRUK International today announced the launch of the TS9 dump truck, a next-generation heavy-duty vehicle designed specifically for the demanding conditions of African mining operations. The TS9 represents a significant evolution from its predecessor, incorporating feedback from fleet operators across Nigeria, Ghana, Zambia, and the Democratic Republic of Congo.</p>
 
 <h2>Key Technical Upgrades</h2>
 <p>The TS9 features a reinforced U-shaped body constructed from Hardox 450 steel, capable of handling 30-ton payloads without deformation. The upgraded cooling system includes a larger radiator and dual electric fans, ensuring stable engine temperatures in ambient conditions up to 55°C.</p>
 <p>The integrated fleet management telematics platform provides real-time GPS tracking, fuel consumption monitoring, and predictive maintenance alerts. Fleet operators can access a web-based dashboard to monitor vehicle health, driver behavior, and operational efficiency across their entire fleet.</p>
 
 <h2>Operator Feedback</h2>
-<p>During the 18-month development process, TrukSino engineers conducted extensive field testing at mining sites in Nigeria's Niger Delta region and Ghana's Ashanti goldfields. The TS9 was subjected to continuous 24/7 operations in dusty, high-temperature conditions, validating its durability and reliability.</p>
+<p>During the 18-month development process, SINOTRUK engineers conducted extensive field testing at mining sites in Nigeria's Niger Delta region and Ghana's Ashanti goldfields. The TS9 was subjected to continuous 24/7 operations in dusty, high-temperature conditions, validating its durability and reliability.</p>
 
 <h2>Availability</h2>
-<p>The TS9 is available for immediate order through TrukSino's network of authorized dealers across Africa. First deliveries are scheduled for Q3 2026, with a production capacity of 200 units per month allocated to African markets.</p>`,
+<p>The TS9 is available for immediate order through SINOTRUK's network of authorized dealers across Africa. First deliveries are scheduled for Q3 2026, with a production capacity of 200 units per month allocated to African markets.</p>`,
     tags: ["product-launch", "mining", "africa"],
   },
   {
@@ -240,16 +240,16 @@ export const allNews: NewsArticleData[] = [
     title: "50 Electric Trucks Deployed for Green Logistics in Southeast Asia",
     slug: "ev-fleet-deployment-southeast-asia",
     date: "May 29, 2026",
-    excerpt: "TrukSino's largest EV export order to date — battery-electric cargo trucks begin operations in Bangkok's distribution network.",
+    excerpt: "SINOTRUK's largest EV export order to date — battery-electric cargo trucks begin operations in Bangkok's distribution network.",
     image: "/images/product-electric-truck.png",
     content: `<h2>Historic EV Deployment</h2>
-<p>In a landmark deal for sustainable logistics, TrukSino International has delivered 50 battery-electric cargo trucks to a major logistics operator in Bangkok, Thailand. This represents the company's largest single EV export order and signals growing international demand for zero-emission commercial vehicles.</p>
+<p>In a landmark deal for sustainable logistics, SINOTRUK International has delivered 50 battery-electric cargo trucks to a major logistics operator in Bangkok, Thailand. This represents the company's largest single EV export order and signals growing international demand for zero-emission commercial vehicles.</p>
 
 <h2>Operational Specifications</h2>
 <p>Each truck is equipped with a 250 kWh LFP battery pack delivering 200 km of real-world urban range. The fleet operates from two distribution centers in Bangkok's eastern industrial zone, serving last-mile delivery routes across the metropolitan area. Overnight depot charging at 120 kW AC ensures full batteries for each day's operations.</p>
 
 <h2>Environmental Impact</h2>
-<p>The fleet deployment is expected to eliminate approximately 3,800 tons of CO₂ emissions annually compared to the diesel vehicles it replaces. The operator has committed to transitioning its entire 200-vehicle fleet to electric by 2029, with TrukSino as the preferred supplier.</p>`,
+<p>The fleet deployment is expected to eliminate approximately 3,800 tons of CO₂ emissions annually compared to the diesel vehicles it replaces. The operator has committed to transitioning its entire 200-vehicle fleet to electric by 2029, with SINOTRUK as the preferred supplier.</p>`,
     tags: ["ev", "logistics", "southeast-asia"],
   },
   {
@@ -260,24 +260,24 @@ export const allNews: NewsArticleData[] = [
     excerpt: "The facility will train 200+ local technicians annually on vehicle maintenance, diagnostics, and genuine parts identification.",
     image: "/images/factory-workshop.png",
     content: `<h2>Investing in Local Expertise</h2>
-<p>TrukSino International has officially opened its new Service Training Center in Lagos, Nigeria — the company's first dedicated training facility on the African continent. The center will train over 200 local technicians annually, covering engine overhaul, gearbox servicing, electrical diagnostics, and ADAS calibration.</p>
+<p>SINOTRUK International has officially opened its new Service Training Center in Lagos, Nigeria — the company's first dedicated training facility on the African continent. The center will train over 200 local technicians annually, covering engine overhaul, gearbox servicing, electrical diagnostics, and ADAS calibration.</p>
 
 <h2>Facility Overview</h2>
-<p>The 2,000 m² facility includes four fully equipped workshop bays, a classroom with capacity for 40 trainees, a parts identification laboratory, and an engine teardown room. All training equipment mirrors the tools and diagnostic systems used at TrukSino's factory service centers.</p>
+<p>The 2,000 m² facility includes four fully equipped workshop bays, a classroom with capacity for 40 trainees, a parts identification laboratory, and an engine teardown room. All training equipment mirrors the tools and diagnostic systems used at SINOTRUK's factory service centers.</p>
 
 <h2>Program Structure</h2>
-<p>The certification program consists of three tiers: Basic Maintenance (2 weeks), Advanced Diagnostics (4 weeks), and Master Technician (8 weeks). Graduates receive TrukSino certification recognized across the company's global dealer network.</p>`,
+<p>The certification program consists of three tiers: Basic Maintenance (2 weeks), Advanced Diagnostics (4 weeks), and Master Technician (8 weeks). Graduates receive SINOTRUK certification recognized across the company's global dealer network.</p>`,
     tags: ["service", "training", "africa"],
   },
   {
     id: "4",
-    title: "TrukSino Wins Contract for 300 Trucks in Peru Mining Expansion",
+    title: "SINOTRUK Wins Contract for 300 Trucks in Peru Mining Expansion",
     slug: "peru-mining-contract-300-trucks",
     date: "March 5, 2026",
-    excerpt: "A major Peruvian copper mine selects TrukSino for its fleet expansion, ordering 300 dump trucks and tractor units.",
+    excerpt: "A major Peruvian copper mine selects SINOTRUK for its fleet expansion, ordering 300 dump trucks and tractor units.",
     image: "/images/hero-banner-1.png",
     content: `<h2>Strategic Fleet Partnership</h2>
-<p>TrukSino International has secured a landmark contract to supply 300 heavy-duty vehicles to one of Peru's largest copper mining operations. The order includes 200 8×4 dump trucks and 100 6×4 tractor trucks, representing one of the company's largest single orders from a Latin American client.</p>
+<p>SINOTRUK International has secured a landmark contract to supply 300 heavy-duty vehicles to one of Peru's largest copper mining operations. The order includes 200 8×4 dump trucks and 100 6×4 tractor trucks, representing one of the company's largest single orders from a Latin American client.</p>
 
 <h2>High-Altitude Engineering</h2>
 <p>The mining site sits at 4,200 meters above sea level in the Peruvian Andes. All vehicles have been specially calibrated for high-altitude operation, including modified engine mapping, upgraded turbochargers, and cold-start systems rated to -15°C.</p>`,
@@ -296,7 +296,7 @@ export interface VideoData {
 }
 
 export const allVideos: VideoData[] = [
-  { id: "1", title: "Brand Film: Who We Are", slug: "brand-film", thumbnail: "/images/hero-banner-1.png", description: "Discover the story behind TrukSino — from our founding in 1993 to becoming a global force in commercial vehicle manufacturing.", duration: "5:30" },
+  { id: "1", title: "Brand Film: Who We Are", slug: "brand-film", thumbnail: "/images/hero-banner-1.png", description: "Discover the story behind SINOTRUK — from our founding in 1993 to becoming a global force in commercial vehicle manufacturing.", duration: "5:30" },
   { id: "2", title: "TS9 Dump Truck Field Test", slug: "ts9-field-test", thumbnail: "/images/product-dump-truck.png", description: "Watch the TS9 tackle extreme conditions in our comprehensive field test, from rocky quarries to muddy construction sites.", duration: "8:15" },
   { id: "3", title: "Inside the Smart Factory", slug: "smart-factory-tour", thumbnail: "/images/hero-banner-2.png", description: "A behind-the-scenes look at our advanced manufacturing facility, featuring robotic welding, automated painting, and AI-driven quality inspection.", duration: "12:00" },
   { id: "4", title: "AMT Transmission Technology", slug: "amt-transmission", thumbnail: "/images/product-tractor-truck.png", description: "How our 12-speed automated manual transmission delivers smoother shifts and better fuel economy than traditional manual gearboxes.", duration: "6:45" },
@@ -310,12 +310,12 @@ export const aboutPages = {
     sections: [
       {
         heading: "Our Heritage",
-        text: "Founded in 1993 in Jinan, Shandong Province, TrukSino International began as a regional truck assembler with a workforce of 300. Over three decades, we have grown into one of China's most respected commercial vehicle manufacturers, with annual production exceeding 350,000 units and a global presence spanning 90+ countries.",
+        text: "Founded in 1993 in Jinan, Shandong Province, SINOTRUK International began as a regional truck assembler with a workforce of 300. Over three decades, we have grown into one of China's most respected commercial vehicle manufacturers, with annual production exceeding 350,000 units and a global presence spanning 90+ countries.",
         image: "/images/factory-workshop.png",
       },
       {
         heading: "Global Reach",
-        text: "Today, TrukSino operates representative offices in 80 countries, supported by 280+ dealer partners and 520+ authorized service stations. Our vehicles operate in some of the world's most challenging environments — from the mines of West Africa to the logistics corridors of Southeast Asia and the construction sites of South America.",
+        text: "Today, SINOTRUK operates representative offices in 80 countries, supported by 280+ dealer partners and 520+ authorized service stations. Our vehicles operate in some of the world's most challenging environments — from the mines of West Africa to the logistics corridors of Southeast Asia and the construction sites of South America.",
         image: "/images/hero-banner-1.png",
       },
       {
@@ -327,9 +327,9 @@ export const aboutPages = {
   },
   "our-journey": {
     title: "Our Journey",
-    subtitle: "Key milestones that shaped TrukSino into a global commercial vehicle leader.",
+    subtitle: "Key milestones that shaped SINOTRUK into a global commercial vehicle leader.",
     milestones: [
-      { year: "1993", title: "Company Founded", description: "TrukSino established in Jinan with a 300-person workforce and a single assembly line." },
+      { year: "1993", title: "Company Founded", description: "SINOTRUK established in Jinan with a 300-person workforce and a single assembly line." },
       { year: "1998", title: "First Export Order", description: "Delivered 50 dump trucks to Southeast Asia, marking our entry into international markets." },
       { year: "2003", title: "Engine Division", description: "Launched in-house engine manufacturing, achieving vertical integration of powertrain production." },
       { year: "2008", title: "100,000 Units", description: "Annual production surpassed 100,000 vehicles for the first time." },
@@ -347,7 +347,7 @@ export const aboutPages = {
     sections: [
       {
         heading: "Manufacturing Scale",
-        text: "TrukSino operates eight production bases across China, with a combined annual capacity of 400,000 vehicles. Our flagship Jinan facility spans 2.4 million square meters and houses dedicated lines for heavy trucks, light trucks, special vehicles, and new energy vehicles.",
+        text: "SINOTRUK operates eight production bases across China, with a combined annual capacity of 400,000 vehicles. Our flagship Jinan facility spans 2.4 million square meters and houses dedicated lines for heavy trucks, light trucks, special vehicles, and new energy vehicles.",
         image: "/images/hero-banner-2.png",
       },
     ],
@@ -374,9 +374,9 @@ export const aboutPages = {
     pillars: [
       { title: "New Energy Transition", description: "Committed to carbon-neutral manufacturing by 2030, with battery-electric and hydrogen fuel cell platforms reducing fleet emissions across our customers' operations." },
       { title: "Low-Carbon Operations", description: "Solar-powered production facilities, closed-loop water recycling, and zero-waste-to-landfill targets across all eight manufacturing bases." },
-      { title: "Safety First", description: "Every TrukSino vehicle undergoes 120+ safety checkpoints. Our cabs meet ECE R29-03 crash standards and our braking systems exceed international regulatory requirements." },
+      { title: "Safety First", description: "Every SINOTRUK vehicle undergoes 120+ safety checkpoints. Our cabs meet ECE R29-03 crash standards and our braking systems exceed international regulatory requirements." },
       { title: "Community Investment", description: "Technical training programs in 15 countries have graduated over 5,000 local technicians, creating skilled employment opportunities in our host communities." },
-      { title: "Charitable Giving", description: "The TrukSino Foundation supports education, healthcare, and disaster relief initiatives in the communities where we operate, with annual giving exceeding $2 million." },
+      { title: "Charitable Giving", description: "The SINOTRUK Foundation supports education, healthcare, and disaster relief initiatives in the communities where we operate, with annual giving exceeding $2 million." },
     ],
   },
 };
@@ -387,24 +387,24 @@ export const servicePages = {
     title: "After-Sales Service",
     subtitle: "Comprehensive support to maximize your fleet's uptime and total cost of ownership.",
     sections: [
-      { heading: "Scheduled Maintenance", text: "Our preventive maintenance programs are tailored to your operating conditions and duty cycles. Factory-trained technicians at 520+ authorized service stations perform scheduled inspections using genuine TrukSino parts, helping prevent unexpected breakdowns and maximizing vehicle uptime.", image: "/images/factory-workshop.png" },
+      { heading: "Scheduled Maintenance", text: "Our preventive maintenance programs are tailored to your operating conditions and duty cycles. Factory-trained technicians at 520+ authorized service stations perform scheduled inspections using genuine SINOTRUK parts, helping prevent unexpected breakdowns and maximizing vehicle uptime.", image: "/images/factory-workshop.png" },
       { heading: "Technical Training", text: "We offer comprehensive driver training (covering safety, fuel-efficient driving techniques, and vehicle operation) and repair training (covering diagnostics, component disassembly/reassembly, and electronic system troubleshooting) at our regional training centers.", image: "/images/hero-banner-2.png" },
-      { heading: "Genuine Parts Supply", text: "Our global parts logistics network ensures rapid delivery of genuine OEM components. Each TrukSino regional warehouse maintains inventory of over 3,000 part numbers, with emergency air-freight capability for critical components.", image: "/images/product-tractor-truck.png" },
+      { heading: "Genuine Parts Supply", text: "Our global parts logistics network ensures rapid delivery of genuine OEM components. Each SINOTRUK regional warehouse maintains inventory of over 3,000 part numbers, with emergency air-freight capability for critical components.", image: "/images/product-tractor-truck.png" },
     ],
   },
   "service-broadcast": {
     title: "Service Broadcast",
     subtitle: "Live technical demonstrations and diagnostic walkthroughs for dealer technicians.",
     sections: [
-      { heading: "Technical Repair Demonstrations", text: "Our Service Broadcast program delivers live technical repair demonstrations to authorized dealer technicians worldwide. Each session covers a specific repair procedure — from engine overhaul to gearbox servicing to electrical diagnostics — presented by TrukSino factory engineers.", image: "/images/hero-banner-2.png" },
-      { heading: "Regional Training Centers", text: "TrukSino operates regional training centers in Lagos, Bangkok, Lima, Dubai, and Moscow. Each center is equipped with vehicle lifts, engine teardown stations, and diagnostic equipment matching our factory service facilities. Training programs range from 2-week basic maintenance to 8-week master technician certification.", image: "/images/factory-workshop.png" },
+      { heading: "Technical Repair Demonstrations", text: "Our Service Broadcast program delivers live technical repair demonstrations to authorized dealer technicians worldwide. Each session covers a specific repair procedure — from engine overhaul to gearbox servicing to electrical diagnostics — presented by SINOTRUK factory engineers.", image: "/images/hero-banner-2.png" },
+      { heading: "Regional Training Centers", text: "SINOTRUK operates regional training centers in Lagos, Bangkok, Lima, Dubai, and Moscow. Each center is equipped with vehicle lifts, engine teardown stations, and diagnostic equipment matching our factory service facilities. Training programs range from 2-week basic maintenance to 8-week master technician certification.", image: "/images/factory-workshop.png" },
     ],
   },
   "maintenance-manual": {
     title: "Maintenance Manual",
-    subtitle: "Comprehensive documentation for every TrukSino vehicle model.",
+    subtitle: "Comprehensive documentation for every SINOTRUK vehicle model.",
     sections: [
-      { heading: "Warranty Coverage", text: "All TrukSino vehicles are covered by a standard 12-month / 100,000 km warranty from the date of delivery. Warranty covers manufacturing defects in materials and workmanship across all major vehicle systems including engine, transmission, axles, and chassis components.", image: "/images/product-tractor-truck.png" },
+      { heading: "Warranty Coverage", text: "All SINOTRUK vehicles are covered by a standard 12-month / 100,000 km warranty from the date of delivery. Warranty covers manufacturing defects in materials and workmanship across all major vehicle systems including engine, transmission, axles, and chassis components.", image: "/images/product-tractor-truck.png" },
       { heading: "Operator Manuals", text: "Every vehicle is supplied with a comprehensive operator's manual covering daily inspection procedures, fluid specifications, service intervals, and basic troubleshooting. Digital versions are available for download from our customer portal.", image: "/images/product-dump-truck.png" },
     ],
   },

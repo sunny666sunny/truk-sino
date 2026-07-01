@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import sitemap from '@/app/sitemap'
 import { allProducts, allNews, allVideos, productCategories } from '@/lib/pageData'
 
-const SITE_URL = 'https://truksino.com'
+const SITE_URL = 'https://sinotruk.com'
 
 describe('sitemap', () => {
   const entries = sitemap()

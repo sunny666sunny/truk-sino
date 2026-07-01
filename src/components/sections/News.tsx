@@ -13,7 +13,7 @@ export default function News() {
       <div className="container-main">
         <SectionHeader
           tag="News & Events"
-          title="Latest from TrukSino"
+          title="Latest from SINOTRUK"
           subtitle="Stay up to date with product launches, dealer events, and industry insights from our global network."
           center
         />

@@ -1,4 +1,4 @@
-const SITE_URL = "https://truksino.com";
+const SITE_URL = "https://sinotruk.com";
 
 /**
  * Organization schema — appears on every page via root layout.
@@ -7,7 +7,7 @@ export function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "TrukSino International",
+    name: "SINOTRUK International",
     url: SITE_URL,
     logo: `${SITE_URL}/images/logo.png`,
     description:
@@ -25,15 +25,15 @@ export function organizationSchema() {
       {
         "@type": "ContactPoint",
         contactType: "sales",
-        email: "sales@truksino.com",
+        email: "sales@sinotruk.com",
         telephone: "+86-531-8888-8888",
         availableLanguage: ["English", "French", "Spanish"],
       },
     ],
     sameAs: [
-      "https://www.facebook.com/truksino",
-      "https://www.youtube.com/@truksino",
-      "https://www.linkedin.com/company/truksino",
+      "https://www.facebook.com/sinotruk",
+      "https://www.youtube.com/@sinotruk",
+      "https://www.linkedin.com/company/sinotruk",
     ],
   };
 }
@@ -58,7 +58,7 @@ export function productSchema(product: {
       : `${SITE_URL}${product.image}`,
     brand: {
       "@type": "Brand",
-      name: "TrukSino",
+      name: "SINOTRUK",
     },
     model: product.name,
     category: product.category,
@@ -100,11 +100,11 @@ export function articleSchema(article: {
     datePublished: article.datePublished,
     author: {
       "@type": article.author ? "Person" : "Organization",
-      name: article.author ?? "TrukSino International",
+      name: article.author ?? "SINOTRUK International",
     },
     publisher: {
       "@type": "Organization",
-      name: "TrukSino International",
+      name: "SINOTRUK International",
       logo: {
         "@type": "ImageObject",
         url: `${SITE_URL}/images/logo.png`,

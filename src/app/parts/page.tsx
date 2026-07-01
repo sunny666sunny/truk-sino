@@ -7,9 +7,9 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { partCategories } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Genuine Parts | TrukSino International",
+  title: "Genuine Parts | SINOTRUK International",
   description:
-    "Your source for OEM truck parts — cabin and body, engine, gearbox, axle, chassis, and more. Genuine components backed by TrukSino warranty.",
+    "Your source for OEM truck parts — cabin and body, engine, gearbox, axle, chassis, and more. Genuine components backed by SINOTRUK warranty.",
 };
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -35,7 +35,7 @@ export default function PartsPage() {
     <SubPageLayout>
       <PageHero
         title="Genuine Parts"
-        subtitle="Your source for OEM truck parts — every component manufactured to TrukSino specifications and backed by our quality warranty."
+        subtitle="Your source for OEM truck parts — every component manufactured to SINOTRUK specifications and backed by our quality warranty."
         image="/images/product-dump-truck.png"
       />
 

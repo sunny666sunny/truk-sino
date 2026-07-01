@@ -5,9 +5,9 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { aboutPages } from "@/lib/pageData";
 
 export const metadata: Metadata = {
-  title: "About Us | TrukSino International",
+  title: "About Us | SINOTRUK International",
   description:
-    "Three decades of engineering excellence in commercial vehicle manufacturing. Discover TrukSino's heritage, facilities, and commitment to social responsibility.",
+    "Three decades of engineering excellence in commercial vehicle manufacturing. Discover SINOTRUK's heritage, facilities, and commitment to social responsibility.",
 };
 
 const stats = [

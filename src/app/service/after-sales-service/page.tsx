@@ -6,7 +6,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { servicePages } from "@/lib/pageData";
 
 export const metadata: Metadata = {
-  title: "After-Sales Service | TrukSino International",
+  title: "After-Sales Service | SINOTRUK International",
   description:
     "Comprehensive after-sales support including preventive maintenance, technical training, and genuine parts supply through 520+ authorized service stations.",
 };

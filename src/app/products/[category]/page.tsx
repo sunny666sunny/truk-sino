@@ -22,11 +22,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cat = productCategories.find((c) => c.slug === category);
 
   if (!cat) {
-    return { title: "Category Not Found | TrukSino International" };
+    return { title: "Category Not Found | SINOTRUK International" };
   }
 
   return {
-    title: `${cat.name} | TrukSino International — Products`,
+    title: `${cat.name} | SINOTRUK International — Products`,
     description: cat.description,
   };
 }

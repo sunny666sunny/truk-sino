@@ -28,11 +28,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = allProducts.find((p) => p.slug === slug);
 
   if (!product) {
-    return { title: "Product Not Found | TrukSino International" };
+    return { title: "Product Not Found | SINOTRUK International" };
   }
 
   return {
-    title: `${product.name} | TrukSino International`,
+    title: `${product.name} | SINOTRUK International`,
     description: product.excerpt,
   };
 }

@@ -5,9 +5,9 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { aboutPages } from "@/lib/pageData";
 
 export const metadata: Metadata = {
-  title: "Who We Are | About TrukSino",
+  title: "Who We Are | About SINOTRUK",
   description:
-    "Discover TrukSino's heritage, global reach, and commitment to innovation in commercial vehicle manufacturing.",
+    "Discover SINOTRUK's heritage, global reach, and commitment to innovation in commercial vehicle manufacturing.",
 };
 
 export default function WhoWeArePage() {

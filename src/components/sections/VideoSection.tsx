@@ -16,7 +16,7 @@ export default function VideoSection() {
         <div className="mb-fluid-lg [&_h2]:!text-white [&_.section-subtitle]:!text-white/60 [&_.section-tag]:!text-white/80">
           <SectionHeader
             tag="Video Gallery"
-            title="See TrukSino in Action"
+            title="See SINOTRUK in Action"
             subtitle="From factory tours to field tests — watch our trucks perform in real-world conditions across every continent."
             center
           />

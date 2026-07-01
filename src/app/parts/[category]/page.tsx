@@ -42,11 +42,11 @@ export async function generateMetadata({
   const { category } = await params;
   const data = partsData[category];
   if (!data) {
-    return { title: "Parts | TrukSino International" };
+    return { title: "Parts | SINOTRUK International" };
   }
   return {
-    title: `${data.title} | TrukSino International`,
-    description: `Browse genuine OEM ${data.title.toLowerCase()} for TrukSino trucks. Quality components backed by factory warranty.`,
+    title: `${data.title} | SINOTRUK International`,
+    description: `Browse genuine OEM ${data.title.toLowerCase()} for SINOTRUK trucks. Quality components backed by factory warranty.`,
   };
 }
 

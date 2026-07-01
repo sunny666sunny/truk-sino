@@ -203,8 +203,8 @@ export const applications = [
 export const news = [
   {
     id: "1",
-    slug: "truksino-ts9-dump-truck-africa-launch",
-    title: "TrukSino Launches Next-Gen TS9 Dump Truck for African Mining Markets",
+    slug: "sinotruk-ts9-dump-truck-africa-launch",
+    title: "SINOTRUK Launches Next-Gen TS9 Dump Truck for African Mining Markets",
     date: "June 18, 2026",
     excerpt:
       "The TS9 features a reinforced 30-ton payload body, upgraded cooling for tropical conditions, and integrated fleet management telematics.",
@@ -216,7 +216,7 @@ export const news = [
     title: "50 Electric Trucks Deployed for Green Logistics in Southeast Asia",
     date: "May 29, 2026",
     excerpt:
-      "TrukSino's largest EV export order to date — battery-electric cargo trucks begin operations in Bangkok's distribution network.",
+      "SINOTRUK's largest EV export order to date — battery-electric cargo trucks begin operations in Bangkok's distribution network.",
     image: "/images/product-electric-truck.png",
   },
   {
@@ -263,10 +263,10 @@ export const partCategories = [
 ];
 
 export const regionalOffices = [
-  { region: "Africa", sales: "sales.africa@truksino.com", support: "support.africa@truksino.com" },
-  { region: "Southeast Asia", sales: "sales.sea@truksino.com", support: "support.sea@truksino.com" },
-  { region: "South America", sales: "sales.latam@truksino.com", support: "support.latam@truksino.com" },
-  { region: "Middle East", sales: "sales.me@truksino.com", support: "support.me@truksino.com" },
-  { region: "CIS Region", sales: "sales.cis@truksino.com", support: "support.cis@truksino.com" },
-  { region: "Europe", sales: "sales.eu@truksino.com", support: "support.eu@truksino.com" },
+  { region: "Africa", sales: "sales.africa@sinotruk.com", support: "support.africa@sinotruk.com" },
+  { region: "Southeast Asia", sales: "sales.sea@sinotruk.com", support: "support.sea@sinotruk.com" },
+  { region: "South America", sales: "sales.latam@sinotruk.com", support: "support.latam@sinotruk.com" },
+  { region: "Middle East", sales: "sales.me@sinotruk.com", support: "support.me@sinotruk.com" },
+  { region: "CIS Region", sales: "sales.cis@sinotruk.com", support: "support.cis@sinotruk.com" },
+  { region: "Europe", sales: "sales.eu@sinotruk.com", support: "support.eu@sinotruk.com" },
 ];

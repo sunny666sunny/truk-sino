@@ -8,11 +8,11 @@ import Button from "@/components/ui/Button";
 const slides = [
   {
     src: "/images/hero-banner-1.png",
-    alt: "TrukSino heavy-duty commercial vehicles on the road",
+    alt: "SINOTRUK heavy-duty commercial vehicles on the road",
   },
   {
     src: "/images/hero-banner-2.png",
-    alt: "TrukSino manufacturing facility and fleet",
+    alt: "SINOTRUK manufacturing facility and fleet",
   },
 ];
 
@@ -66,7 +66,7 @@ export default function Hero() {
 
         {/* Description */}
         <p className="mt-6 max-w-[560px] text-[var(--text-fluid-lg)] leading-relaxed text-white/75">
-          From mining sites to metropolitan logistics, TrukSino delivers
+          From mining sites to metropolitan logistics, SINOTRUK delivers
           heavy-duty trucks, trailers, and new-energy vehicles engineered for
           reliability across every terrain and climate.
         </p>

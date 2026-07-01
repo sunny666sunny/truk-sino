@@ -5,7 +5,7 @@ import SubPageLayout from "@/components/shared/SubPageLayout";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "Service | TrukSino International",
+  title: "Service | SINOTRUK International",
   description:
     "Comprehensive after-sales support, technical training, service broadcasts, and maintenance manuals to maximize your fleet uptime and total cost of ownership.",
 };
@@ -29,7 +29,7 @@ const serviceCards = [
     href: "/service/maintenance-manual",
     title: "Maintenance Manual",
     description:
-      "Comprehensive warranty coverage, operator manuals, and service documentation for every TrukSino vehicle model.",
+      "Comprehensive warranty coverage, operator manuals, and service documentation for every SINOTRUK vehicle model.",
     image: "/images/product-tractor-truck.png",
   },
 ] as const;

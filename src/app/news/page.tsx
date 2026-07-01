@@ -7,9 +7,9 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { allNews } from "@/lib/pageData";
 
 export const metadata: Metadata = {
-  title: "News & Events | TrukSino International",
+  title: "News & Events | SINOTRUK International",
   description:
-    "Latest updates from TrukSino — product launches, industry events, partnerships, and company milestones.",
+    "Latest updates from SINOTRUK — product launches, industry events, partnerships, and company milestones.",
 };
 
 export default function NewsPage() {
@@ -17,7 +17,7 @@ export default function NewsPage() {
     <SubPageLayout>
       <PageHero
         title="News & Events"
-        subtitle="Latest updates from TrukSino — product launches, industry events, partnerships, and company milestones."
+        subtitle="Latest updates from SINOTRUK — product launches, industry events, partnerships, and company milestones."
         image="/images/hero-banner-1.png"
       />
 

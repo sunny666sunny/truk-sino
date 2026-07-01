@@ -25,9 +25,9 @@ export default function Advantages() {
     <section className="bg-[var(--color-surface-warm)] py-[var(--spacing-fluid-2xl)]">
       <div className="container-main">
         <SectionHeader
-          tag="Why TrukSino"
+          tag="Why SINOTRUK"
           title="Engineering Advantages That Deliver Results"
-          subtitle="Six core pillars that set TrukSino vehicles apart — from proprietary powertrains to a worldwide support network that keeps your fleet moving."
+          subtitle="Six core pillars that set SINOTRUK vehicles apart — from proprietary powertrains to a worldwide support network that keeps your fleet moving."
           center
         />
 

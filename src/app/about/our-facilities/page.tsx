@@ -5,7 +5,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { aboutPages } from "@/lib/pageData";
 
 export const metadata: Metadata = {
-  title: "Our Facilities | About TrukSino",
+  title: "Our Facilities | About SINOTRUK",
   description:
     "World-class manufacturing infrastructure across eight production bases in China, with advanced workshop lines and precision equipment.",
 };

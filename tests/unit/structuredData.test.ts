@@ -7,7 +7,7 @@ import {
   faqSchema,
 } from '@/lib/structuredData'
 
-const SITE_URL = 'https://truksino.com'
+const SITE_URL = 'https://sinotruk.com'
 
 describe('organizationSchema', () => {
   const schema = organizationSchema()
@@ -18,7 +18,7 @@ describe('organizationSchema', () => {
   })
 
   it('has the correct name', () => {
-    expect(schema.name).toBe('TrukSino International')
+    expect(schema.name).toBe('SINOTRUK International')
   })
 
   it('has the correct URL', () => {
@@ -37,13 +37,13 @@ describe('organizationSchema', () => {
   it('has contact points with sales email', () => {
     expect(schema.contactPoint).toHaveLength(1)
     expect(schema.contactPoint[0].contactType).toBe('sales')
-    expect(schema.contactPoint[0].email).toBe('sales@truksino.com')
+    expect(schema.contactPoint[0].email).toBe('sales@sinotruk.com')
   })
 
   it('has social media links in sameAs', () => {
-    expect(schema.sameAs).toContain('https://www.facebook.com/truksino')
-    expect(schema.sameAs).toContain('https://www.youtube.com/@truksino')
-    expect(schema.sameAs).toContain('https://www.linkedin.com/company/truksino')
+    expect(schema.sameAs).toContain('https://www.facebook.com/sinotruk')
+    expect(schema.sameAs).toContain('https://www.youtube.com/@sinotruk')
+    expect(schema.sameAs).toContain('https://www.linkedin.com/company/sinotruk')
   })
 })
 
@@ -68,9 +68,9 @@ describe('productSchema', () => {
     expect(schema.description).toBe(product.description)
   })
 
-  it('has the TrukSino brand', () => {
+  it('has the SINOTRUK brand', () => {
     expect(schema.brand['@type']).toBe('Brand')
-    expect(schema.brand.name).toBe('TrukSino')
+    expect(schema.brand.name).toBe('SINOTRUK')
   })
 
   it('includes the category', () => {
@@ -111,7 +111,7 @@ describe('productSchema', () => {
 
 describe('articleSchema', () => {
   const article = {
-    title: 'TrukSino Launches TS9',
+    title: 'SINOTRUK Launches TS9',
     description: 'New dump truck for African markets',
     image: '/images/news-ts9.png',
     datePublished: '2026-06-15',
@@ -142,12 +142,12 @@ describe('articleSchema', () => {
   it('falls back to Organization author when no author is given', () => {
     const noAuthor = articleSchema({ ...article, author: undefined })
     expect(noAuthor.author['@type']).toBe('Organization')
-    expect(noAuthor.author.name).toBe('TrukSino International')
+    expect(noAuthor.author.name).toBe('SINOTRUK International')
   })
 
   it('has a publisher with logo', () => {
     expect(schema.publisher['@type']).toBe('Organization')
-    expect(schema.publisher.name).toBe('TrukSino International')
+    expect(schema.publisher.name).toBe('SINOTRUK International')
     expect(schema.publisher.logo.url).toBe(`${SITE_URL}/images/logo.png`)
   })
 

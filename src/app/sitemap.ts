@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { allProducts, allNews, allVideos, productCategories } from "@/lib/pageData";
 import { partCategories } from "@/lib/data";
 
-const SITE_URL = "https://truksino.com";
+const SITE_URL = "https://sinotruk.com";
 
 // Part-category slugs (matching toSlug() output)
 const partSlugs = [

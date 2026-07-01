@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { navLinks } from "@/lib/data";
 import NewsletterForm from "@/components/forms/NewsletterForm";
 
@@ -98,26 +99,18 @@ export default function Footer() {
           {/* Brand column (wider) */}
           <div className="lg:col-span-2 sm:col-span-2">
             {/* Logo */}
-            <a href="#home" className="inline-flex items-center gap-3 mb-5">
-              <div className="flex flex-col items-center leading-none">
-                <div
-                  className="w-10 h-9 rounded-[var(--radius-brand)] flex items-center justify-center text-white font-bold text-xs tracking-widest"
-                  style={{ backgroundColor: "var(--color-accent)" }}
-                >
-                  TS
-                </div>
-                <div
-                  className="w-10 h-1 rounded-b-[var(--radius-brand)]"
-                  style={{ backgroundColor: "var(--color-brand-800)" }}
-                />
-              </div>
-              <span className="font-[family-name:var(--font-display)] text-2xl tracking-[0.08em] text-white leading-none select-none">
-                TRUK<span className="text-[var(--color-accent)]">SINO</span>
-              </span>
+            <a href="/#home" className="inline-flex items-center mb-5">
+              <Image
+                src="/images/logo-sinotruk.png"
+                alt="SINOTRUK"
+                width={130}
+                height={52}
+                className="object-contain brightness-0 invert"
+              />
             </a>
 
             <p className="text-white/50 text-sm leading-relaxed mb-6 max-w-xs">
-              TrukSino is a leading manufacturer and exporter of heavy-duty commercial vehicles,
+              SINOTRUK is a leading manufacturer and exporter of heavy-duty commercial vehicles,
               delivering reliable trucking solutions to over 90 countries worldwide since 1998.
             </p>
 
@@ -173,13 +166,13 @@ export default function Footer() {
       {/* ── Bottom bar ── */}
       <div className="border-t border-white/[0.08]">
         <div className="container-main py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/40">
-          <p>&copy; {year} TrukSino. All rights reserved.</p>
+          <p>&copy; {year} SINOTRUK. All rights reserved.</p>
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6">
             <a
-              href="mailto:info@truksino.com"
+              href="mailto:info@sinotruk.com"
               className="hover:text-white/70 transition-colors"
             >
-              info@truksino.com
+              info@sinotruk.com
             </a>
             <span>Mon – Sat: 8:00 AM – 6:00 PM (CST)</span>
           </div>

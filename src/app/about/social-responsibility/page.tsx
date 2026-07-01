@@ -5,9 +5,9 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { aboutPages } from "@/lib/pageData";
 
 export const metadata: Metadata = {
-  title: "Social Responsibility | About TrukSino",
+  title: "Social Responsibility | About SINOTRUK",
   description:
-    "TrukSino's commitment to sustainable operations, new energy transition, safety, community investment, and charitable giving.",
+    "SINOTRUK's commitment to sustainable operations, new energy transition, safety, community investment, and charitable giving.",
 };
 
 export default function SocialResponsibilityPage() {

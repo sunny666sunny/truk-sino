@@ -46,7 +46,7 @@ export default function Applications() {
         <SectionHeader
           tag="Industry Solutions"
           title="Purpose-Built for Your Industry"
-          subtitle="Whatever your sector demands, TrukSino engineers vehicles to match — from construction sites to clean-city logistics."
+          subtitle="Whatever your sector demands, SINOTRUK engineers vehicles to match — from construction sites to clean-city logistics."
           center
         />
 

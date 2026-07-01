@@ -6,9 +6,9 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { productCategories } from "@/lib/pageData";
 
 export const metadata: Metadata = {
-  title: "Products | TrukSino International — Complete Range of Commercial Vehicles",
+  title: "Products | SINOTRUK International — Complete Range of Commercial Vehicles",
   description:
-    "Explore TrukSino's full lineup of commercial vehicles: heavy trucks, light trucks, special vehicles, semi-trailers, and new energy vehicles built for global markets.",
+    "Explore SINOTRUK's full lineup of commercial vehicles: heavy trucks, light trucks, special vehicles, semi-trailers, and new energy vehicles built for global markets.",
 };
 
 export default function ProductsPage() {

@@ -28,9 +28,9 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: "TrukSino International | China's Leading Heavy Truck Manufacturer & Exporter",
+  title: "SINOTRUK International | China's Leading Heavy Truck Manufacturer & Exporter",
   description:
-    "TrukSino International manufactures and exports heavy-duty trucks, light trucks, special vehicles, semi-trailers and new energy vehicles to 90+ countries. Request a quote today.",
+    "SINOTRUK International manufactures and exports heavy-duty trucks, light trucks, special vehicles, semi-trailers and new energy vehicles to 90+ countries. Request a quote today.",
   keywords: [
     "heavy truck manufacturer",
     "dump truck exporter",
@@ -43,15 +43,15 @@ export const metadata: Metadata = {
   robots: "index, follow",
   openGraph: {
     type: "website",
-    title: "TrukSino International | Heavy Truck Manufacturer & Global Exporter",
+    title: "SINOTRUK International | Heavy Truck Manufacturer & Global Exporter",
     description:
       "China's premier heavy-duty truck manufacturer exporting to 90+ countries. Dump trucks, tractor trucks, special vehicles and more.",
     images: [{ url: "/images/hero-banner-1.png", width: 1792, height: 1024 }],
-    siteName: "TrukSino International",
+    siteName: "SINOTRUK International",
   },
   twitter: {
     card: "summary_large_image",
-    title: "TrukSino International | Heavy Truck Manufacturer",
+    title: "SINOTRUK International | Heavy Truck Manufacturer",
     description:
       "China's premier heavy-duty truck manufacturer exporting to 90+ countries worldwide.",
     images: ["/images/hero-banner-1.png"],

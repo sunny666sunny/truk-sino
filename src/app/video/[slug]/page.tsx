@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const video = allVideos.find((v) => v.slug === slug);
   if (!video) return {};
   return {
-    title: `${video.title} | TrukSino Video`,
+    title: `${video.title} | SINOTRUK Video`,
     description: video.description,
     openGraph: {
       title: video.title,

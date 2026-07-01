@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = allNews.find((n) => n.slug === slug);
   if (!article) return {};
   return {
-    title: `${article.title} | TrukSino News`,
+    title: `${article.title} | SINOTRUK News`,
     description: article.excerpt,
     openGraph: {
       title: article.title,

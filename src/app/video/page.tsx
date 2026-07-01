@@ -7,9 +7,9 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { allVideos } from "@/lib/pageData";
 
 export const metadata: Metadata = {
-  title: "Video Gallery | TrukSino International",
+  title: "Video Gallery | SINOTRUK International",
   description:
-    "Watch TrukSino vehicles in action — factory tours, product demonstrations, field tests, and brand stories.",
+    "Watch SINOTRUK vehicles in action — factory tours, product demonstrations, field tests, and brand stories.",
 };
 
 export default function VideoPage() {
@@ -17,7 +17,7 @@ export default function VideoPage() {
     <SubPageLayout>
       <PageHero
         title="Video Gallery"
-        subtitle="Watch TrukSino vehicles in action — factory tours, product demonstrations, field tests, and brand stories."
+        subtitle="Watch SINOTRUK vehicles in action — factory tours, product demonstrations, field tests, and brand stories."
         image="/images/hero-banner-1.png"
       />
 

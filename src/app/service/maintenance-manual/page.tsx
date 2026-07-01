@@ -6,9 +6,9 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { servicePages } from "@/lib/pageData";
 
 export const metadata: Metadata = {
-  title: "Maintenance Manual | TrukSino International",
+  title: "Maintenance Manual | SINOTRUK International",
   description:
-    "Comprehensive warranty coverage, operator manuals, and service documentation for every TrukSino vehicle model.",
+    "Comprehensive warranty coverage, operator manuals, and service documentation for every SINOTRUK vehicle model.",
 };
 
 const sidebarLinks = [

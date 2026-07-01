@@ -113,7 +113,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             {/* Header bar */}
             <div className="flex items-center justify-between h-[70px] px-6 border-b border-white/[0.08] shrink-0">
               <span className="font-[family-name:var(--font-display)] text-xl text-white tracking-wider select-none">
-                TRUK<span className="text-[var(--color-accent)]">SINO</span>
+                SINOTRUK
               </span>
               <button
                 onClick={onClose}
@@ -191,10 +191,10 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             {/* Bottom info */}
             <div className="shrink-0 px-6 py-5 border-t border-white/[0.08] text-xs text-white/30 space-y-1">
               <a
-                href="mailto:info@truksino.com"
+                href="mailto:info@sinotruk.com"
                 className="block hover:text-white/60 transition-colors"
               >
-                info@truksino.com
+                info@sinotruk.com
               </a>
               <p>Mon–Sat: 8:00 AM – 6:00 PM (CST)</p>
             </div>

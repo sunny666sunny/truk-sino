@@ -3,9 +3,9 @@ import PageHero from "@/components/shared/PageHero";
 import ContactSection from "@/components/sections/ContactSection";
 
 export const metadata: Metadata = {
-  title: "Contact Us | TrukSino International",
+  title: "Contact Us | SINOTRUK International",
   description:
-    "Get in touch with TrukSino's global sales and support team. Request a quote, ask about our products, or find your nearest regional office.",
+    "Get in touch with SINOTRUK's global sales and support team. Request a quote, ask about our products, or find your nearest regional office.",
 };
 
 export default async function ContactPage({

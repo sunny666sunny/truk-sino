@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu } from "lucide-react";
 import { useScrollHeader } from "@/hooks";
@@ -61,27 +62,15 @@ export default function Header({ onMenuToggle }: HeaderProps) {
     >
       <div className="container-main flex items-center justify-between h-full">
         {/* ── Logo ── */}
-        <a href="#home" className="flex items-center gap-3 shrink-0">
-          {/* Icon block */}
-          <div className="flex flex-col items-center leading-none">
-            <div
-              className="w-[44px] h-[40px] rounded-[var(--radius-brand)] flex items-center justify-center text-white font-bold text-sm tracking-widest"
-              style={{ backgroundColor: "var(--color-accent)" }}
-            >
-              TS
-            </div>
-            <div
-              className="w-[44px] h-1 rounded-b-[var(--radius-brand)]"
-              style={{ backgroundColor: "var(--color-brand-900)" }}
-            />
-          </div>
-          {/* Wordmark */}
-          <span className="font-[family-name:var(--font-display)] text-[1.65rem] tracking-[0.08em] leading-none select-none">
-            <span className={scrolled ? "text-[var(--color-brand-900)]" : "text-white"}>
-              TRUK
-            </span>
-            <span className="text-[var(--color-accent)]">SINO</span>
-          </span>
+        <a href="/#home" className="flex items-center shrink-0">
+          <Image
+            src="/images/logo-sinotruk.png"
+            alt="SINOTRUK"
+            width={scrolled ? 120 : 140}
+            height={scrolled ? 48 : 56}
+            className="object-contain"
+            preload
+          />
         </a>
 
         {/* ── Desktop nav ── */}

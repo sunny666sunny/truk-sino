@@ -71,9 +71,9 @@ export default function ContactSection({ productInterest }: { productInterest?: 
                         Email
                       </p>
                       <p className="text-sm text-ink-light">
-                        info@truksino.com
+                        info@sinotruk.com
                         <br />
-                        sales@truksino.com
+                        sales@sinotruk.com
                       </p>
                     </div>
                   </div>

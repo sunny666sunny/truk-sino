@@ -5,9 +5,9 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { aboutPages } from "@/lib/pageData";
 
 export const metadata: Metadata = {
-  title: "Our Journey | About TrukSino",
+  title: "Our Journey | About SINOTRUK",
   description:
-    "Key milestones that shaped TrukSino into a global commercial vehicle leader — from 1993 founding to 2 million cumulative exports.",
+    "Key milestones that shaped SINOTRUK into a global commercial vehicle leader — from 1993 founding to 2 million cumulative exports.",
 };
 
 export default function OurJourneyPage() {

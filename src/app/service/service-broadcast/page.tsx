@@ -6,9 +6,9 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import { servicePages } from "@/lib/pageData";
 
 export const metadata: Metadata = {
-  title: "Service Broadcast | TrukSino International",
+  title: "Service Broadcast | SINOTRUK International",
   description:
-    "Live technical demonstrations and diagnostic walkthroughs for authorized dealer technicians, delivered from TrukSino's factory engineers.",
+    "Live technical demonstrations and diagnostic walkthroughs for authorized dealer technicians, delivered from SINOTRUK's factory engineers.",
 };
 
 const sidebarLinks = [
