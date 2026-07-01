@@ -6,7 +6,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import SectionHeader from "@/components/ui/SectionHeader";
 import InquiryForm from "@/components/forms/InquiryForm";
 
-export default function ContactSection() {
+export default function ContactSection({ productInterest }: { productInterest?: string }) {
   return (
     <section
       id="contact"
@@ -31,7 +31,7 @@ export default function ContactSection() {
                 Fill out the form and our sales team will respond within 24 hours.
               </p>
 
-              <InquiryForm />
+              <InquiryForm productInterest={productInterest} />
             </div>
           </ScrollReveal>
 

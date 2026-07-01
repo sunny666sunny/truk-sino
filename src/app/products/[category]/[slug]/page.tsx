@@ -169,7 +169,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   </dl>
 
                   <div className="mt-8">
-                    <Button href="/contact" variant="primary" size="lg" className="w-full">
+                    <Button href={`/contact?product=${encodeURIComponent(product.name)}`} variant="primary" size="lg" className="w-full">
                       Request Quote
                     </Button>
                   </div>

@@ -70,7 +70,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <meta name="theme-color" content="#0b1e36" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

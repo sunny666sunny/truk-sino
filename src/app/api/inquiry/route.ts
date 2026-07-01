@@ -3,6 +3,7 @@ import { z } from "zod";
 import { writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
+import { sendInquiryNotification } from "@/lib/feishu";
 
 /* ── Zod v4 schema ── */
 const inquirySchema = z.object({
@@ -130,6 +131,11 @@ export async function POST(req: Request) {
       path.join(dataDir, fileName),
       JSON.stringify(inquiry, null, 2),
       "utf-8",
+    );
+
+    /* Send Feishu notification (non-blocking) */
+    sendInquiryNotification(inquiry).catch((err) =>
+      console.error("[inquiry] Feishu notification error:", err),
     );
 
     return NextResponse.json({ success: true, id }, { status: 201 });

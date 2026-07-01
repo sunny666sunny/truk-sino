@@ -1,4 +1,5 @@
 import { navLinks } from "@/lib/data";
+import NewsletterForm from "@/components/forms/NewsletterForm";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -157,6 +158,15 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* ── Newsletter ── */}
+      <div className="border-t border-white/[0.08]">
+        <div className="container-main py-10">
+          <div className="max-w-xl">
+            <NewsletterForm />
+          </div>
         </div>
       </div>
 

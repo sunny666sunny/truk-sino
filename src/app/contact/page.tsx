@@ -8,14 +8,20 @@ export const metadata: Metadata = {
     "Get in touch with TrukSino's global sales and support team. Request a quote, ask about our products, or find your nearest regional office.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string }>;
+}) {
+  const { product } = await searchParams;
+
   return (
     <>
       <PageHero
         title="Contact Us"
         subtitle="Get in touch with our team — whether you need a single truck or a fleet of 500, our sales engineers are ready to help."
       />
-      <ContactSection />
+      <ContactSection productInterest={product} />
     </>
   );
 }
