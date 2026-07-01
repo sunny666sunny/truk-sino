@@ -68,7 +68,7 @@ export default function Header({ onMenuToggle }: HeaderProps) {
             alt="SINOTRUK"
             width={scrolled ? 120 : 140}
             height={scrolled ? 48 : 56}
-            className="object-contain"
+            className={`object-contain transition-all duration-300 ${scrolled ? "" : "brightness-0 invert"}`}
             preload
           />
         </a>

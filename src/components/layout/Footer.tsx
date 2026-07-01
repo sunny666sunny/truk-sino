@@ -99,14 +99,17 @@ export default function Footer() {
           {/* Brand column (wider) */}
           <div className="lg:col-span-2 sm:col-span-2">
             {/* Logo */}
-            <a href="/#home" className="inline-flex items-center mb-5">
+            <a href="/#home" className="inline-flex items-center gap-3 mb-5">
               <Image
-                src="/images/logo-sinotruk.png"
+                src="/images/sinotruk-icon.png"
                 alt="SINOTRUK"
-                width={130}
-                height={52}
-                className="object-contain brightness-0 invert"
+                width={48}
+                height={48}
+                className="object-contain invert"
               />
+              <span className="font-[family-name:var(--font-display)] text-2xl tracking-[0.08em] text-white leading-none select-none">
+                SINO<span className="text-[var(--color-accent)]">TRUK</span>
+              </span>
             </a>
 
             <p className="text-white/50 text-sm leading-relaxed mb-6 max-w-xs">
