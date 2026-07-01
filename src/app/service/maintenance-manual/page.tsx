@@ -1,0 +1,100 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import PageHero from "@/components/shared/PageHero";
+import SubPageLayout from "@/components/shared/SubPageLayout";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import { servicePages } from "@/lib/pageData";
+
+export const metadata: Metadata = {
+  title: "Maintenance Manual | TrukSino International",
+  description:
+    "Comprehensive warranty coverage, operator manuals, and service documentation for every TrukSino vehicle model.",
+};
+
+const sidebarLinks = [
+  { href: "/service/after-sales-service", label: "After-Sales Service" },
+  { href: "/service/service-broadcast", label: "Service Broadcast" },
+  { href: "/service/maintenance-manual", label: "Maintenance Manual" },
+];
+
+export default function MaintenanceManualPage() {
+  const data = servicePages["maintenance-manual"];
+
+  return (
+    <SubPageLayout>
+      <PageHero
+        title={data.title}
+        subtitle={data.subtitle}
+        image="/images/product-tractor-truck.png"
+        breadcrumb={[
+          { label: "Service", href: "/service" },
+          { label: "Maintenance Manual" },
+        ]}
+      />
+
+      <section className="bg-surface py-fluid-2xl">
+        <div className="container-main">
+          <div className="grid gap-fluid-xl lg:grid-cols-[1fr_260px]">
+            {/* Main content */}
+            <div className="space-y-fluid-xl">
+              {data.sections.map((section, i) => (
+                <ScrollReveal key={section.heading} delay={i * 0.1}>
+                  <div
+                    className={`grid gap-8 items-center md:grid-cols-2 ${
+                      i % 2 === 1 ? "md:[direction:rtl]" : ""
+                    }`}
+                  >
+                    <div className={i % 2 === 1 ? "md:[direction:ltr]" : ""}>
+                      <h2 className="font-display text-2xl text-brand-900 md:text-3xl">
+                        {section.heading}
+                      </h2>
+                      <p className="mt-4 leading-relaxed text-ink-light">
+                        {section.text}
+                      </p>
+                    </div>
+                    <div
+                      className={`overflow-hidden rounded-brand-lg ${
+                        i % 2 === 1 ? "md:[direction:ltr]" : ""
+                      }`}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={section.image}
+                        alt={section.heading}
+                        className="aspect-[4/3] w-full object-cover"
+                      />
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            {/* Sidebar */}
+            <ScrollReveal delay={0.2}>
+              <aside className="rounded-brand-lg border border-divider bg-surface-warm p-6 lg:sticky lg:top-[100px]">
+                <h3 className="mb-4 font-condensed text-sm font-semibold uppercase tracking-wider text-brand-900">
+                  Service
+                </h3>
+                <nav className="space-y-1">
+                  {sidebarLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`block rounded-brand px-3 py-2.5 text-sm transition-colors ${
+                        link.href === "/service/maintenance-manual"
+                          ? "bg-accent-soft font-semibold text-accent"
+                          : "text-ink-light hover:bg-surface hover:text-brand-900"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </nav>
+              </aside>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+    </SubPageLayout>
+  );
+}
