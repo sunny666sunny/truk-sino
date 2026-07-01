@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/shared/JsonLd";
+import ReCaptchaProvider from "@/components/providers/ReCaptchaProvider";
 import { organizationSchema } from "@/lib/structuredData";
 
 const bebasNeue = Bebas_Neue({
@@ -82,9 +83,11 @@ export default function RootLayout({
         <JsonLd data={organizationSchema()} />
       </head>
       <body className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <ReCaptchaProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </ReCaptchaProvider>
       </body>
     </html>
   );

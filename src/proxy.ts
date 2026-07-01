@@ -38,8 +38,8 @@ setInterval(() => {
 function buildCsp(): string {
   const directives = [
     "default-src 'self'",
-    // Allow self, inline scripts (Next.js hydration), and JSON-LD scripts
-    "script-src 'self' 'unsafe-inline'",
+    // Allow self, inline scripts (Next.js hydration), and Google reCAPTCHA
+    "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com",
     // Allow self and inline styles (Tailwind CSS)
     "style-src 'self' 'unsafe-inline'",
     // Allow Google Fonts
@@ -48,6 +48,10 @@ function buildCsp(): string {
     "img-src 'self' data:",
     // Allow Google Fonts stylesheets
     "style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    // Allow reCAPTCHA challenge iframes
+    "frame-src https://www.google.com",
+    // Allow reCAPTCHA API connections
+    "connect-src 'self' https://www.google.com",
     // Restrict other resource types
     "object-src 'none'",
     "base-uri 'self'",

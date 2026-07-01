@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Button from "@/components/ui/Button";
 
 /* ── Zod schema ── */
@@ -107,6 +108,8 @@ export default function InquiryForm({
     message: string;
   } | null>(null);
 
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const {
     register,
     handleSubmit,
@@ -137,10 +140,16 @@ export default function InquiryForm({
   const onSubmit = async (data: InquiryFormData) => {
     setSubmitting(true);
     try {
+      /* Get reCAPTCHA v3 token (if available) */
+      let recaptchaToken: string | undefined;
+      if (executeRecaptcha) {
+        recaptchaToken = await executeRecaptcha("inquiry_submit");
+      }
+
       const res = await fetch("/api/inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, recaptchaToken }),
       });
 
       const json = await res.json();

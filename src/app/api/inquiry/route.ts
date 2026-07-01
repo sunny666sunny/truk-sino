@@ -15,7 +15,40 @@ const inquirySchema = z.object({
   productInterest: z.string().optional(),
   quantity: z.string().optional(),
   message: z.string().min(10, "Message must be at least 10 characters"),
+  recaptchaToken: z.string().optional(),
 });
+
+/* ── reCAPTCHA v3 verification ── */
+const RECAPTCHA_THRESHOLD = 0.5;
+
+async function verifyRecaptcha(token: string): Promise<{ success: boolean; score: number }> {
+  const secret = process.env.RECAPTCHA_SECRET_KEY;
+  if (!secret) {
+    // Skip verification when secret key is not configured
+    return { success: true, score: 1.0 };
+  }
+
+  try {
+    const res = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        secret,
+        response: token,
+      }),
+    });
+
+    const data = await res.json();
+    return {
+      success: data.success === true,
+      score: typeof data.score === "number" ? data.score : 0,
+    };
+  } catch (err) {
+    console.error("[inquiry] reCAPTCHA verification error:", err);
+    // Fail open: allow submission if Google API is unreachable
+    return { success: true, score: 1.0 };
+  }
+}
 
 /* ── In-memory rate limiter (per IP, 5 per hour) ── */
 const RATE_LIMIT_MAX = 5;
@@ -112,6 +145,24 @@ export async function POST(req: Request) {
       );
     }
 
+    /* Verify reCAPTCHA token */
+    const recaptchaToken = parsed.data.recaptchaToken;
+    if (recaptchaToken) {
+      const recaptchaResult = await verifyRecaptcha(recaptchaToken);
+      if (!recaptchaResult.success || recaptchaResult.score < RECAPTCHA_THRESHOLD) {
+        console.warn(
+          `[inquiry] reCAPTCHA failed: success=${recaptchaResult.success}, score=${recaptchaResult.score}`,
+        );
+        return NextResponse.json(
+          { success: false, error: "Spam protection check failed. Please try again." },
+          { status: 403 },
+        );
+      }
+    }
+
+    /* Strip recaptchaToken from stored data */
+    const { recaptchaToken: _token, ...inquiryData } = parsed.data;
+
     /* Generate unique ID and timestamp */
     const id = `INQ-${Date.now()}-${crypto.randomBytes(4).toString("hex")}`;
     const createdAt = new Date().toISOString();
@@ -119,7 +170,7 @@ export async function POST(req: Request) {
     const inquiry = {
       id,
       createdAt,
-      ...parsed.data,
+      ...inquiryData,
     };
 
     /* Store as JSON file */
