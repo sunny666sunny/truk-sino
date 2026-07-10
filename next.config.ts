@@ -22,6 +22,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "**.trucksino.com",
       },
+      {
+        protocol: "https",
+        hostname: "**.sinotrukteam.com",
+      },
     ],
   },
 };
