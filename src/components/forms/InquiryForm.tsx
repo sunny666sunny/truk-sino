@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Button from "@/components/ui/Button";
 
-/* ── Zod schema ── */
+/* 鈹€鈹€ Zod schema 鈹€鈹€ */
 const inquirySchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
@@ -21,7 +21,7 @@ const inquirySchema = z.object({
 
 type InquiryFormData = z.infer<typeof inquirySchema>;
 
-/* ── Country list (common truck export markets) ── */
+/* 鈹€鈹€ Country list (common truck export markets) 鈹€鈹€ */
 const COUNTRIES = [
   "Nigeria",
   "Philippines",
@@ -46,7 +46,7 @@ const COUNTRIES = [
   "Other",
 ];
 
-/* ── Style constants (CSS-variable based, matching site theme) ── */
+/* 鈹€鈹€ Style constants (CSS-variable based, matching site theme) 鈹€鈹€ */
 const fieldClass =
   "w-full rounded-[var(--radius-brand)] border border-[var(--color-divider)] bg-[var(--color-surface-warm)] px-4 py-3 font-[family-name:var(--font-body)] text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/10";
 
@@ -55,13 +55,13 @@ const labelClass =
 
 const errorClass = "mt-1 text-xs text-red-500";
 
-/* ── Props ── */
+/* 鈹€鈹€ Props 鈹€鈹€ */
 interface InquiryFormProps {
   productInterest?: string;
   compact?: boolean;
 }
 
-/* ── Toast component (simple, no library) ── */
+/* 鈹€鈹€ Toast component (simple, no library) 鈹€鈹€ */
 function Toast({
   type,
   message,
@@ -97,7 +97,7 @@ function Toast({
   );
 }
 
-/* ── Main form component ── */
+/* 鈹€鈹€ Main form component 鈹€鈹€ */
 export default function InquiryForm({
   productInterest: defaultProduct,
   compact = false,
@@ -143,7 +143,11 @@ export default function InquiryForm({
       /* Get reCAPTCHA v3 token (if available) */
       let recaptchaToken: string | undefined;
       if (executeRecaptcha) {
-        recaptchaToken = await executeRecaptcha("inquiry_submit");
+        try {
+          recaptchaToken = await executeRecaptcha("inquiry_submit");
+        } catch {
+          recaptchaToken = undefined;
+        }
       }
 
       const res = await fetch("/api/inquiry", {
@@ -196,7 +200,7 @@ export default function InquiryForm({
       )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
-        {/* Row 1 — Name + Phone */}
+        {/* Row 1 鈥?Name + Phone */}
         <div
           className={compact ? "space-y-5" : "grid gap-5 sm:grid-cols-2"}
         >
@@ -233,7 +237,7 @@ export default function InquiryForm({
           </div>
         </div>
 
-        {/* Row 2 — Email + Country */}
+        {/* Row 2 鈥?Email + Country */}
         <div
           className={compact ? "space-y-5" : "grid gap-5 sm:grid-cols-2"}
         >
@@ -278,7 +282,7 @@ export default function InquiryForm({
           </div>
         </div>
 
-        {/* Row 3 — Company + Product Interest */}
+        {/* Row 3 鈥?Company + Product Interest */}
         {!compact && (
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
@@ -331,7 +335,7 @@ export default function InquiryForm({
           </div>
         )}
 
-        {/* Row 4 — Quantity (non-compact only) */}
+        {/* Row 4 鈥?Quantity (non-compact only) */}
         {!compact && (
           <div>
             <label htmlFor="inquiry-quantity" className={labelClass}>

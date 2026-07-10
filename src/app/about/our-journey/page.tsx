@@ -87,7 +87,7 @@ function MilestoneCard({
   milestone: { year: string; title: string; description: string };
 }) {
   return (
-    <div className="max-w-md rounded-[var(--radius-brand-lg)] bg-white p-6 shadow-[var(--shadow-card)]">
+    <div className="max-w-md rounded-[var(--radius-brand-lg)] bg-white p-6 shadow-card">
       <p className="font-[family-name:var(--font-display)] text-4xl text-[var(--color-accent)]">
         {milestone.year}
       </p>

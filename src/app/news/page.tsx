@@ -4,20 +4,21 @@ import Image from "next/image";
 import PageHero from "@/components/shared/PageHero";
 import SubPageLayout from "@/components/shared/SubPageLayout";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { allNews } from "@/lib/pageData";
+import { getNewsArticles } from "@/lib/cmsData";
 
 export const metadata: Metadata = {
   title: "News & Events | SINOTRUK International",
   description:
-    "Latest updates from SINOTRUK — product launches, industry events, partnerships, and company milestones.",
+    "Latest updates from SINOTRUK 鈥?product launches, industry events, partnerships, and company milestones.",
 };
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const allNews = await getNewsArticles();
   return (
     <SubPageLayout>
       <PageHero
         title="News & Events"
-        subtitle="Latest updates from SINOTRUK — product launches, industry events, partnerships, and company milestones."
+        subtitle="Latest updates from SINOTRUK 鈥?product launches, industry events, partnerships, and company milestones."
         image="/images/hero-banner-1.png"
       />
 
@@ -28,7 +29,7 @@ export default function NewsPage() {
               <ScrollReveal key={article.id} delay={index * 0.1}>
                 <Link
                   href={`/news/${article.slug}`}
-                  className="group block h-full rounded-[var(--radius-brand-lg)] bg-white shadow-[var(--shadow-card)] overflow-hidden transition-transform duration-300 hover:-translate-y-1"
+                  className="group block h-full rounded-[var(--radius-brand-lg)] bg-white shadow-card overflow-hidden transition-transform duration-300 hover:-translate-y-1"
                 >
                   {/* Image */}
                   <div className="relative aspect-[16/9] overflow-hidden">

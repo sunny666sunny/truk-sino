@@ -4,20 +4,21 @@ import Image from "next/image";
 import PageHero from "@/components/shared/PageHero";
 import SubPageLayout from "@/components/shared/SubPageLayout";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { allVideos } from "@/lib/pageData";
+import { getVideos } from "@/lib/cmsData";
 
 export const metadata: Metadata = {
   title: "Video Gallery | SINOTRUK International",
   description:
-    "Watch SINOTRUK vehicles in action — factory tours, product demonstrations, field tests, and brand stories.",
+    "Watch SINOTRUK vehicles in action - factory tours, product demonstrations, field tests, and brand stories.",
 };
 
-export default function VideoPage() {
+export default async function VideoPage() {
+  const allVideos = await getVideos();
   return (
     <SubPageLayout>
       <PageHero
         title="Video Gallery"
-        subtitle="Watch SINOTRUK vehicles in action — factory tours, product demonstrations, field tests, and brand stories."
+        subtitle="Watch SINOTRUK vehicles in action - factory tours, product demonstrations, field tests, and brand stories."
         image="/images/hero-banner-1.png"
       />
 
@@ -26,44 +27,18 @@ export default function VideoPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {allVideos.map((video, index) => (
               <ScrollReveal key={video.id} delay={index * 0.1}>
-                <Link
-                  href={`/video/${video.slug}`}
-                  className="group relative block aspect-[16/10] overflow-hidden rounded-[var(--radius-brand-lg)] cursor-pointer"
-                >
-                  {/* Thumbnail */}
-                  <Image
-                    src={video.thumbnail}
-                    alt={video.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-
-                  {/* Gradient overlay */}
+                <Link href={`/video/${video.slug}`} className="group relative block aspect-[16/10] overflow-hidden rounded-[var(--radius-brand-lg)] cursor-pointer">
+                  <Image src={video.thumbnail} alt={`${video.title} video thumbnail`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-
-                  {/* Play button */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm border border-white/40 transition-all duration-300 group-hover:bg-white/30 group-hover:scale-110">
-                      <svg
-                        className="w-6 h-6 text-white ml-0.5"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
+                      <svg className="w-6 h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                     </div>
                   </div>
-
-                  {/* Bottom info */}
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <div className="flex items-end justify-between gap-3">
-                      <h2 className="font-[family-name:var(--font-condensed)] text-sm font-semibold uppercase tracking-wider text-white leading-tight">
-                        {video.title}
-                      </h2>
-                      <span className="shrink-0 rounded bg-black/50 px-2 py-0.5 font-[family-name:var(--font-condensed)] text-xs font-medium text-white">
-                        {video.duration}
-                      </span>
+                      <h2 className="font-[family-name:var(--font-condensed)] text-sm font-semibold uppercase tracking-wider text-white leading-tight">{video.title}</h2>
+                      {video.duration ? <span className="shrink-0 rounded bg-black/50 px-2 py-0.5 font-[family-name:var(--font-condensed)] text-xs font-medium text-white">{video.duration}</span> : null}
                     </div>
                   </div>
                 </Link>

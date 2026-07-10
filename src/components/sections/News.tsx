@@ -3,18 +3,19 @@ import Link from "next/link";
 import { news } from "@/lib/data";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import SectionHeader from "@/components/ui/SectionHeader";
+import type { HomeContent } from "@/lib/homeContent";
 
-export default function News() {
+export default function News({ content }: { content: HomeContent["news"] }) {
   return (
     <section
       id="news"
-      className="bg-surface py-fluid-2xl"
+      className="bg-[var(--color-surface)] py-fluid-2xl"
     >
       <div className="container-main">
         <SectionHeader
-          tag="News & Events"
-          title="Latest from SINOTRUK"
-          subtitle="Stay up to date with product launches, dealer events, and industry insights from our global network."
+          tag={content.tag}
+          title={content.title}
+          subtitle={content.description}
           center
         />
 
@@ -23,10 +24,10 @@ export default function News() {
             <ScrollReveal key={article.id}>
               <Link
                 href={`/news/${article.slug}`}
-                className="group block h-full overflow-hidden rounded-brand-lg bg-surface shadow-card transition-all hover:-translate-y-1 hover:shadow-card-hover"
+                className="group block h-full overflow-hidden rounded-[var(--radius-brand)] border border-[var(--color-divider)] bg-[var(--color-surface)] shadow-card transition-all hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-card-hover"
               >
                 {/* Image */}
-                <div className="relative aspect-[16/9] overflow-hidden bg-placeholder">
+                <div className="relative aspect-[16/9] overflow-hidden bg-[var(--color-placeholder)]">
                   <Image
                     src={article.image}
                     alt={article.title}
@@ -38,19 +39,19 @@ export default function News() {
 
                 {/* Body */}
                 <div className="p-6">
-                  <time className="font-condensed text-xs font-semibold uppercase tracking-wider text-accent">
+                  <time className="font-[family-name:var(--font-condensed)] text-xs font-black uppercase tracking-[0.16em] text-[var(--color-accent)]">
                     {article.date}
                   </time>
 
-                  <h3 className="mt-2 font-condensed text-lg font-bold leading-snug text-brand-900 group-hover:text-accent transition-colors">
+                  <h3 className="mt-3 font-[family-name:var(--font-display)] text-lg uppercase leading-[1] text-[var(--color-brand-900)] transition-colors group-hover:text-[var(--color-accent)]">
                     {article.title}
                   </h3>
 
-                  <p className="mt-2.5 mb-4 line-clamp-2 text-sm text-ink-light">
+                  <p className="mb-5 mt-3 line-clamp-2 text-sm font-semibold text-[var(--color-ink-light)]">
                     {article.excerpt}
                   </p>
 
-                  <span className="font-condensed text-sm font-semibold uppercase tracking-wider text-accent">
+                  <span className="font-[family-name:var(--font-condensed)] text-sm font-black uppercase tracking-[0.14em] text-[var(--color-accent)]">
                     Read Article &rarr;
                   </span>
                 </div>

@@ -3,32 +3,15 @@
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronDown } from "lucide-react";
-import { navLinks } from "@/lib/data";
+import { getMergedNavLinks, type EditableNavLink, type NavChild, type NavLinkItem } from "@/lib/navigation";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
 /* ------------------------------------------------------------------ */
-interface NavChild {
-  label: string;
-  href: string;
-}
-
-interface MegaColumn {
-  title: string;
-  links: NavChild[];
-}
-
-interface NavLinkItem {
-  label: string;
-  href: string;
-  children?: NavChild[];
-  mega?: boolean;
-  megaColumns?: MegaColumn[];
-}
-
 interface MobileNavProps {
   isOpen: boolean;
   onClose: () => void;
+  editableLinks?: EditableNavLink[];
 }
 
 /* ------------------------------------------------------------------ */
@@ -45,7 +28,7 @@ function flattenChildren(link: NavLinkItem): NavChild[] {
 /* ------------------------------------------------------------------ */
 /*  Component                                                          */
 /* ------------------------------------------------------------------ */
-export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
+export default function MobileNav({ isOpen, onClose, editableLinks }: MobileNavProps) {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
   /* Lock body scroll when open */
@@ -66,10 +49,6 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
     return () => window.removeEventListener("keydown", handleKey);
   }, [isOpen, onClose]);
 
-  /* Reset expanded items when nav closes */
-  useEffect(() => {
-    if (!isOpen) setExpandedItems(new Set());
-  }, [isOpen]);
 
   const toggleExpand = useCallback((label: string) => {
     setExpandedItems((prev) => {
@@ -80,7 +59,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
     });
   }, []);
 
-  const links = navLinks as NavLinkItem[];
+  const links = getMergedNavLinks(editableLinks);
 
   return (
     <AnimatePresence>
@@ -105,14 +84,14 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="fixed top-0 right-0 bottom-0 w-full max-w-[360px] z-40 bg-[var(--color-brand-900)] flex flex-col overflow-hidden"
+            className="fixed top-0 right-0 bottom-0 w-full max-w-[360px] z-50 bg-[var(--color-brand-900)] flex flex-col overflow-hidden"
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
           >
             {/* Header bar */}
             <div className="flex items-center justify-between h-[70px] px-6 border-b border-white/[0.08] shrink-0">
-              <span className="font-[family-name:var(--font-display)] text-xl text-white tracking-wider select-none">
+              <span className="font-[family-name:var(--font-display)] text-2xl text-white tracking-[0.08em] select-none">
                 SINOTRUK
               </span>
               <button
@@ -138,7 +117,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                       <a
                         href={link.href}
                         onClick={onClose}
-                        className="flex-1 px-6 py-4 font-[family-name:var(--font-condensed)] font-semibold text-[0.9375rem] uppercase tracking-wider text-white hover:text-[var(--color-accent)] transition-colors duration-150"
+                        className="flex-1 px-6 py-4 font-[family-name:var(--font-condensed)] font-black text-[0.9375rem] uppercase tracking-[0.13em] text-white hover:text-[var(--color-accent)] transition-colors duration-150"
                       >
                         {link.label}
                       </a>
@@ -174,7 +153,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                               <a
                                 href={child.href}
                                 onClick={onClose}
-                                className="block pl-10 pr-6 py-3 text-[0.8125rem] text-white/55 hover:text-[var(--color-accent)] transition-colors duration-150 border-b border-white/[0.04]"
+                                className="block pl-10 pr-6 py-3 text-[0.8125rem] font-bold uppercase tracking-[0.06em] text-white/62 hover:text-[var(--color-accent)] transition-colors duration-150 border-b border-white/[0.04]"
                               >
                                 {child.label}
                               </a>
@@ -196,7 +175,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
               >
                 info@sinotruk.com
               </a>
-              <p>Mon–Sat: 8:00 AM – 6:00 PM (CST)</p>
+              <p>Mon鈥揝at: 8:00 AM 鈥?6:00 PM (CST)</p>
             </div>
           </motion.nav>
         </>

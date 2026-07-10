@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { writeFile, mkdir } from "node:fs/promises";
-import path from "node:path";
-import crypto from "node:crypto";
+import { prisma } from "@/lib/prisma-client";
 import { sendInquiryNotification } from "@/lib/feishu";
 
-/* ── Zod v4 schema ── */
+/* 閳光偓閳光偓 Zod v4 schema 閳光偓閳光偓 */
 const inquirySchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
@@ -18,7 +16,7 @@ const inquirySchema = z.object({
   recaptchaToken: z.string().optional(),
 });
 
-/* ── reCAPTCHA v3 verification ── */
+/* 閳光偓閳光偓 reCAPTCHA v3 verification 閳光偓閳光偓 */
 const RECAPTCHA_THRESHOLD = 0.5;
 
 async function verifyRecaptcha(token: string): Promise<{ success: boolean; score: number }> {
@@ -50,7 +48,7 @@ async function verifyRecaptcha(token: string): Promise<{ success: boolean; score
   }
 }
 
-/* ── In-memory rate limiter (per IP, 5 per hour) ── */
+/* 閳光偓閳光偓 In-memory rate limiter (per IP, 5 per hour) 閳光偓閳光偓 */
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
 
@@ -72,7 +70,7 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
-/* ── Periodic cleanup every 30 minutes ── */
+/* 閳光偓閳光偓 Periodic cleanup every 30 minutes 閳光偓閳光偓 */
 const CLEANUP_INTERVAL_MS = 30 * 60 * 1000;
 let lastCleanup = Date.now();
 
@@ -90,7 +88,7 @@ function maybeCleanup() {
   }
 }
 
-/* ── Helper: extract client IP ── */
+/* 閳光偓閳光偓 Helper: extract client IP 閳光偓閳光偓 */
 function getClientIp(req: Request): string {
   return (
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
@@ -99,7 +97,7 @@ function getClientIp(req: Request): string {
   );
 }
 
-/* ── POST /api/inquiry ── */
+/* 閳光偓閳光偓 POST /api/inquiry 閳光偓閳光偓 */
 export async function POST(req: Request) {
   try {
     maybeCleanup();
@@ -161,35 +159,36 @@ export async function POST(req: Request) {
     }
 
     /* Strip recaptchaToken from stored data */
-    const { recaptchaToken: _token, ...inquiryData } = parsed.data;
+    const inquiryData = { ...parsed.data };
+    delete inquiryData.recaptchaToken;
 
-    /* Generate unique ID and timestamp */
-    const id = `INQ-${Date.now()}-${crypto.randomBytes(4).toString("hex")}`;
-    const createdAt = new Date().toISOString();
-
-    const inquiry = {
-      id,
-      createdAt,
-      ...inquiryData,
-    };
-
-    /* Store as JSON file */
-    const dataDir = path.join(process.cwd(), "data", "inquiries");
-    await mkdir(dataDir, { recursive: true });
-
-    const fileName = `${createdAt.slice(0, 10)}_${id}.json`;
-    await writeFile(
-      path.join(dataDir, fileName),
-      JSON.stringify(inquiry, null, 2),
-      "utf-8",
-    );
+    /* Store inquiry in the admin-managed database */
+    const inquiry = await prisma.inquiry.create({
+      data: {
+        ...inquiryData,
+        recaptchaScore: recaptchaToken ? 1.0 : null,
+        ip,
+        source: req.headers.get("referer"),
+      },
+    });
 
     /* Send Feishu notification (non-blocking) */
-    sendInquiryNotification(inquiry).catch((err) =>
+    sendInquiryNotification({
+      id: inquiry.id,
+      name: inquiry.name,
+      email: inquiry.email,
+      phone: inquiry.phone ?? undefined,
+      country: inquiry.country ?? "",
+      company: inquiry.company ?? undefined,
+      productInterest: inquiry.productInterest ?? undefined,
+      quantity: inquiry.quantity ?? undefined,
+      message: inquiry.message,
+      createdAt: inquiry.createdAt.toISOString(),
+    }).catch((err) =>
       console.error("[inquiry] Feishu notification error:", err),
     );
 
-    return NextResponse.json({ success: true, id }, { status: 201 });
+    return NextResponse.json({ success: true, id: inquiry.id }, { status: 201 });
   } catch (err) {
     console.error("[inquiry] Unexpected error:", err);
     return NextResponse.json(

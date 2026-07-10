@@ -4,21 +4,23 @@ import { notFound } from "next/navigation";
 import PageHero from "@/components/shared/PageHero";
 import SubPageLayout from "@/components/shared/SubPageLayout";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { allProducts, productCategories } from "@/lib/pageData";
+import { getProductCategories, getProducts } from "@/lib/cmsData";
 
-/* ── Types ── */
+/* 鈹€鈹€ Types 鈹€鈹€ */
 type Props = {
   params: Promise<{ category: string }>;
 };
 
-/* ── Static Params ── */
-export function generateStaticParams() {
+/* 鈹€鈹€ Static Params 鈹€鈹€ */
+export async function generateStaticParams() {
+  const productCategories = await getProductCategories();
   return productCategories.map((cat) => ({ category: cat.slug }));
 }
 
-/* ── Dynamic Metadata ── */
+/* 鈹€鈹€ Dynamic Metadata 鈹€鈹€ */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params;
+  const productCategories = await getProductCategories();
   const cat = productCategories.find((c) => c.slug === category);
 
   if (!cat) {
@@ -26,14 +28,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${cat.name} | SINOTRUK International — Products`,
+    title: `${cat.name} | SINOTRUK International 鈥?Products`,
     description: cat.description,
   };
 }
 
-/* ── Page ── */
+/* 鈹€鈹€ Page 鈹€鈹€ */
 export default async function CategoryPage({ params }: Props) {
   const { category } = await params;
+  const [productCategories, allProducts] = await Promise.all([
+    getProductCategories(),
+    getProducts(),
+  ]);
   const cat = productCategories.find((c) => c.slug === category);
 
   if (!cat) notFound();
@@ -52,7 +58,7 @@ export default async function CategoryPage({ params }: Props) {
         ]}
       />
 
-      {/* ── Category Tabs ── */}
+      {/* 鈹€鈹€ Category Tabs 鈹€鈹€ */}
       <section className="bg-white border-b border-[var(--color-divider)]">
         <div className="container-main">
           <div className="flex gap-1 overflow-x-auto py-4 scrollbar-hide">
@@ -77,7 +83,7 @@ export default async function CategoryPage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── Product Grid ── */}
+      {/* 鈹€鈹€ Product Grid 鈹€鈹€ */}
       <section className="bg-[var(--color-surface-warm)] py-16 md:py-24">
         <div className="container-main">
           {products.length === 0 ? (
@@ -98,7 +104,7 @@ export default async function CategoryPage({ params }: Props) {
                 <ScrollReveal key={product.id} delay={i * 0.08}>
                   <Link
                     href={`/products/${product.categorySlug}/${product.slug}`}
-                    className="group block bg-white rounded-[var(--radius-brand-lg)] overflow-hidden shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 transition-all duration-300"
+                    className="group block bg-white rounded-[var(--radius-brand-lg)] overflow-hidden shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
                   >
                     {/* Image */}
                     <div className="relative aspect-[4/3] overflow-hidden">

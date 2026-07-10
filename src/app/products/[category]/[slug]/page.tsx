@@ -5,26 +5,28 @@ import PageHero from "@/components/shared/PageHero";
 import SubPageLayout from "@/components/shared/SubPageLayout";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import Button from "@/components/ui/Button";
-import { allProducts, productCategories } from "@/lib/pageData";
+import { getProductBySlug, getProducts } from "@/lib/cmsData";
 import JsonLd from "@/components/shared/JsonLd";
 import { productSchema } from "@/lib/structuredData";
 
-/* ── Types ── */
+/* 鈹€鈹€ Types 鈹€鈹€ */
 type Props = {
   params: Promise<{ category: string; slug: string }>;
 };
 
-/* ── Static Params ── */
-export function generateStaticParams() {
+/* 鈹€鈹€ Static Params 鈹€鈹€ */
+export async function generateStaticParams() {
+  const allProducts = await getProducts();
   return allProducts.map((p) => ({
     category: p.categorySlug,
     slug: p.slug,
   }));
 }
 
-/* ── Dynamic Metadata ── */
+/* 鈹€鈹€ Dynamic Metadata 鈹€鈹€ */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const allProducts = await getProducts();
   const product = allProducts.find((p) => p.slug === slug);
 
   if (!product) {
@@ -37,10 +39,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-/* ── Page ── */
+/* 鈹€鈹€ Page 鈹€鈹€ */
 export default async function ProductDetailPage({ params }: Props) {
   const { category, slug } = await params;
-  const product = allProducts.find((p) => p.slug === slug && p.categorySlug === category);
+  const allProducts = await getProducts();
+  const product = await getProductBySlug(category, slug);
 
   if (!product) notFound();
 
@@ -50,7 +53,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
   return (
     <SubPageLayout>
-      {/* ── Product Structured Data ── */}
+      {/* 鈹€鈹€ Product Structured Data 鈹€鈹€ */}
       <JsonLd
         data={productSchema({
           name: product.name,
@@ -71,15 +74,15 @@ export default async function ProductDetailPage({ params }: Props) {
         ]}
       />
 
-      {/* ── Main Content: Gallery + Specs ── */}
+      {/* 鈹€鈹€ Main Content: Gallery + Specs 鈹€鈹€ */}
       <section className="bg-[var(--color-surface-warm)] py-16 md:py-24">
         <div className="container-main">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            {/* ── Left: Gallery ── */}
+            {/* 鈹€鈹€ Left: Gallery 鈹€鈹€ */}
             <div className="lg:col-span-2">
               <ScrollReveal>
                 {/* Main image */}
-                <div className="rounded-[var(--radius-brand-lg)] overflow-hidden bg-white shadow-[var(--shadow-card)]">
+                <div className="rounded-[var(--radius-brand-lg)] overflow-hidden bg-white shadow-card">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={product.image}
@@ -88,13 +91,13 @@ export default async function ProductDetailPage({ params }: Props) {
                   />
                 </div>
 
-                {/* Thumbnail strip — stacked vertically */}
+                {/* Thumbnail strip 鈥?stacked vertically */}
                 {product.gallery.length > 1 && (
                   <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {product.gallery.map((img, i) => (
                       <div
                         key={i}
-                        className="rounded-[var(--radius-brand)] overflow-hidden bg-white shadow-[var(--shadow-card)]"
+                        className="rounded-[var(--radius-brand)] overflow-hidden bg-white shadow-card"
                       >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
@@ -108,10 +111,10 @@ export default async function ProductDetailPage({ params }: Props) {
                 )}
               </ScrollReveal>
 
-              {/* ── Description ── */}
+              {/* 鈹€鈹€ Description 鈹€鈹€ */}
               <ScrollReveal delay={0.15}>
                 <div className="mt-12">
-                  <h2 className="font-[family-name:var(--font-display)] text-3xl text-[var(--color-ink)] mb-6">
+                  <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--color-ink)] mb-6">
                     Overview
                   </h2>
                   <p className="text-[var(--color-ink-light)] leading-relaxed text-base md:text-lg">
@@ -120,18 +123,18 @@ export default async function ProductDetailPage({ params }: Props) {
                 </div>
               </ScrollReveal>
 
-              {/* ── Features ── */}
+              {/* 鈹€鈹€ Features 鈹€鈹€ */}
               {product.features.length > 0 && (
                 <ScrollReveal delay={0.2}>
                   <div className="mt-12">
-                    <h2 className="font-[family-name:var(--font-display)] text-3xl text-[var(--color-ink)] mb-8">
+                    <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--color-ink)] mb-8">
                       Key Features
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                       {product.features.map((feat) => (
                         <div
                           key={feat.title}
-                          className="bg-white rounded-[var(--radius-brand)] p-6 shadow-[var(--shadow-card)]"
+                          className="bg-white rounded-[var(--radius-brand)] p-6 shadow-card"
                         >
                           <h3 className="font-[family-name:var(--font-condensed)] font-bold text-lg text-[var(--color-ink)] mb-2">
                             {feat.title}
@@ -147,11 +150,11 @@ export default async function ProductDetailPage({ params }: Props) {
               )}
             </div>
 
-            {/* ── Right: Specs Sidebar ── */}
+            {/* 鈹€鈹€ Right: Specs Sidebar 鈹€鈹€ */}
             <div className="lg:col-span-1">
               <ScrollReveal delay={0.1}>
-                <div className="sticky top-28 bg-white rounded-[var(--radius-brand-lg)] shadow-[var(--shadow-card)] p-6 md:p-8">
-                  <h3 className="font-[family-name:var(--font-display)] text-2xl text-[var(--color-ink)] mb-6">
+                <div className="sticky top-28 bg-white rounded-[var(--radius-brand-lg)] shadow-card p-6 md:p-8">
+                  <h3 className="font-[family-name:var(--font-display)] text-lg text-[var(--color-ink)] mb-6">
                     Specifications
                   </h3>
 
@@ -180,12 +183,12 @@ export default async function ProductDetailPage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── Related Products ── */}
+      {/* 鈹€鈹€ Related Products 鈹€鈹€ */}
       {relatedProducts.length > 0 && (
         <section className="bg-white py-16 md:py-24">
           <div className="container-main">
             <ScrollReveal>
-              <h2 className="font-[family-name:var(--font-display)] text-3xl text-[var(--color-ink)] mb-10">
+              <h2 className="font-[family-name:var(--font-display)] text-xl text-[var(--color-ink)] mb-10">
                 Related Products
               </h2>
             </ScrollReveal>
@@ -195,7 +198,7 @@ export default async function ProductDetailPage({ params }: Props) {
                 <ScrollReveal key={rp.id} delay={i * 0.1}>
                   <Link
                     href={`/products/${rp.categorySlug}/${rp.slug}`}
-                    className="group block bg-[var(--color-surface-warm)] rounded-[var(--radius-brand-lg)] overflow-hidden shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 transition-all duration-300"
+                    className="group block bg-[var(--color-surface-warm)] rounded-[var(--radius-brand-lg)] overflow-hidden shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden">
                       {/* eslint-disable-next-line @next/next/no-img-element */}

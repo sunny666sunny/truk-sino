@@ -54,7 +54,7 @@ describe('inquirySchema validation', () => {
 
   describe('missing required fields', () => {
     it('fails when name is missing', () => {
-      const { name, ...data } = validInquiry
+      const data: Partial<typeof validInquiry> = { ...validInquiry }; delete data.name
       const result = inquirySchema.safeParse(data)
       expect(result.success).toBe(false)
       if (!result.success) {
@@ -64,7 +64,7 @@ describe('inquirySchema validation', () => {
     })
 
     it('fails when email is missing', () => {
-      const { email, ...data } = validInquiry
+      const data: Partial<typeof validInquiry> = { ...validInquiry }; delete data.email
       const result = inquirySchema.safeParse(data)
       expect(result.success).toBe(false)
       if (!result.success) {
@@ -74,7 +74,7 @@ describe('inquirySchema validation', () => {
     })
 
     it('fails when country is missing', () => {
-      const { country, ...data } = validInquiry
+      const data: Partial<typeof validInquiry> = { ...validInquiry }; delete data.country
       const result = inquirySchema.safeParse(data)
       expect(result.success).toBe(false)
       if (!result.success) {
@@ -84,7 +84,7 @@ describe('inquirySchema validation', () => {
     })
 
     it('fails when message is missing', () => {
-      const { message, ...data } = validInquiry
+      const data: Partial<typeof validInquiry> = { ...validInquiry }; delete data.message
       const result = inquirySchema.safeParse(data)
       expect(result.success).toBe(false)
       if (!result.success) {

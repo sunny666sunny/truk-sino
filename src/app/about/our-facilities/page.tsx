@@ -49,7 +49,7 @@ export default function OurFacilitiesPage() {
 
                   {/* Text */}
                   <div>
-                    <h2 className="font-[family-name:var(--font-display)] text-2xl text-[var(--color-ink)] md:text-3xl">
+                    <h2 className="font-[family-name:var(--font-display)] text-lg text-[var(--color-ink)] md:text-xl">
                       {section.heading}
                     </h2>
                     <p className="mt-4 leading-relaxed text-[var(--color-ink-light)]">
@@ -67,7 +67,7 @@ export default function OurFacilitiesPage() {
       <section className="bg-[var(--color-surface-section)]">
         <div className="container-main py-16 md:py-24">
           <ScrollReveal>
-            <h2 className="font-[family-name:var(--font-display)] text-2xl text-[var(--color-ink)] md:text-3xl">
+            <h2 className="font-[family-name:var(--font-display)] text-lg text-[var(--color-ink)] md:text-xl">
               Workshop Lines
             </h2>
           </ScrollReveal>
@@ -96,7 +96,7 @@ export default function OurFacilitiesPage() {
       <section>
         <div className="container-main py-16 md:py-24">
           <ScrollReveal>
-            <h2 className="font-[family-name:var(--font-display)] text-2xl text-[var(--color-ink)] md:text-3xl">
+            <h2 className="font-[family-name:var(--font-display)] text-lg text-[var(--color-ink)] md:text-xl">
               Machinery &amp; Equipment
             </h2>
           </ScrollReveal>

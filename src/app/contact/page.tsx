@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/shared/PageHero";
 import ContactSection from "@/components/sections/ContactSection";
+import { getHomeContent } from "@/lib/homeContent";
 
 export const metadata: Metadata = {
   title: "Contact Us | SINOTRUK International",
@@ -13,15 +14,15 @@ export default async function ContactPage({
 }: {
   searchParams: Promise<{ product?: string }>;
 }) {
-  const { product } = await searchParams;
+  const [{ product }, content] = await Promise.all([searchParams, getHomeContent()]);
 
   return (
     <>
       <PageHero
         title="Contact Us"
-        subtitle="Get in touch with our team — whether you need a single truck or a fleet of 500, our sales engineers are ready to help."
+        subtitle={content.contact.description}
       />
-      <ContactSection productInterest={product} />
+      <ContactSection productInterest={product} content={content.contact} />
     </>
   );
 }

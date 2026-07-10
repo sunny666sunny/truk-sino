@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import PageHero from "@/components/shared/PageHero";
 import SubPageLayout from "@/components/shared/SubPageLayout";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { allNews } from "@/lib/pageData";
+import { getNewsArticle, getNewsArticles } from "@/lib/cmsData";
 import JsonLd from "@/components/shared/JsonLd";
 import { articleSchema } from "@/lib/structuredData";
 
@@ -13,13 +13,14 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const allNews = await getNewsArticles();
   return allNews.map((article) => ({ slug: article.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = allNews.find((n) => n.slug === slug);
+  const article = await getNewsArticle(slug);
   if (!article) return {};
   return {
     title: `${article.title} | SINOTRUK News`,
@@ -34,7 +35,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function NewsArticlePage({ params }: Props) {
   const { slug } = await params;
-  const article = allNews.find((n) => n.slug === slug);
+  const [allNews, article] = await Promise.all([
+    getNewsArticles(),
+    getNewsArticle(slug),
+  ]);
 
   if (!article) notFound();
 
@@ -44,7 +48,7 @@ export default async function NewsArticlePage({ params }: Props) {
 
   return (
     <SubPageLayout>
-      {/* ── Article Structured Data ── */}
+      {/* 鈹€鈹€ Article Structured Data 鈹€鈹€ */}
       <JsonLd
         data={articleSchema({
           title: article.title,
@@ -98,7 +102,7 @@ export default async function NewsArticlePage({ params }: Props) {
           {relatedArticles.length > 0 && (
             <div>
               <ScrollReveal>
-                <h2 className="font-[family-name:var(--font-display)] text-2xl md:text-3xl text-[var(--color-ink)] mb-8 text-center">
+                <h2 className="font-[family-name:var(--font-display)] text-lg md:text-xl text-[var(--color-ink)] mb-8 text-center">
                   More News
                 </h2>
               </ScrollReveal>
@@ -108,7 +112,7 @@ export default async function NewsArticlePage({ params }: Props) {
                   <ScrollReveal key={related.id} delay={index * 0.1}>
                     <Link
                       href={`/news/${related.slug}`}
-                      className="group block h-full rounded-[var(--radius-brand-lg)] bg-white shadow-[var(--shadow-card)] overflow-hidden transition-transform duration-300 hover:-translate-y-1"
+                      className="group block h-full rounded-[var(--radius-brand-lg)] bg-white shadow-card overflow-hidden transition-transform duration-300 hover:-translate-y-1"
                     >
                       <div className="relative aspect-[16/9] overflow-hidden">
                         <Image

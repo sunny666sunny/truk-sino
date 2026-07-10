@@ -3,25 +3,26 @@ import Link from "next/link";
 import PageHero from "@/components/shared/PageHero";
 import SubPageLayout from "@/components/shared/SubPageLayout";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { productCategories } from "@/lib/pageData";
+import { getProductCategories } from "@/lib/cmsData";
 
 export const metadata: Metadata = {
-  title: "Products | SINOTRUK International — Complete Range of Commercial Vehicles",
+  title: "Products | SINOTRUK International 鈥?Complete Range of Commercial Vehicles",
   description:
     "Explore SINOTRUK's full lineup of commercial vehicles: heavy trucks, light trucks, special vehicles, semi-trailers, and new energy vehicles built for global markets.",
 };
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const productCategories = await getProductCategories();
   return (
     <SubPageLayout>
       <PageHero
         title="Products"
-        subtitle="Complete range of commercial vehicles — from heavy-duty dump trucks and tractor units to light cargo trucks, special vehicles, and zero-emission electric platforms."
+        subtitle="Complete range of commercial vehicles 鈥?from heavy-duty dump trucks and tractor units to light cargo trucks, special vehicles, and zero-emission electric platforms."
         image="/images/hero-banner-1.png"
         breadcrumb={[{ label: "Products" }]}
       />
 
-      {/* ── Category Grid ── */}
+      {/* 鈹€鈹€ Category Grid 鈹€鈹€ */}
       <section className="bg-[var(--color-surface-warm)] py-20 md:py-28">
         <div className="container-main">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -39,7 +40,7 @@ export default function ProductsPage() {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
 
-                  {/* Gradient overlay — default (brand-900 tones) */}
+                  {/* Gradient overlay 鈥?default (brand-900 tones) */}
                   <div
                     className="absolute inset-0 transition-opacity duration-500"
                     style={{
@@ -48,7 +49,7 @@ export default function ProductsPage() {
                     }}
                   />
 
-                  {/* Gradient overlay — hover (accent tones) */}
+                  {/* Gradient overlay 鈥?hover (accent tones) */}
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{
@@ -59,7 +60,7 @@ export default function ProductsPage() {
 
                   {/* Content */}
                   <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
-                    <h2 className="font-[family-name:var(--font-display)] text-2xl text-white mb-1">
+                    <h2 className="font-[family-name:var(--font-display)] text-lg text-white mb-1">
                       {cat.name}
                     </h2>
                     <p className="text-sm text-white/80 leading-relaxed line-clamp-2 mb-4">

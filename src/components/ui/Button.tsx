@@ -9,7 +9,7 @@ const variants = {
     "bg-[var(--color-accent)]",
     "text-white",
     "hover:-translate-y-0.5",
-    "hover:shadow-[0_8px_24px_rgba(232,88,12,0.45)]",
+    "hover:shadow-[0_10px_28px_rgba(240,90,11,0.42)]",
   ].join(" "),
 
   outline: [
@@ -36,8 +36,8 @@ const variants = {
 /* ── Size styles ── */
 const sizes = {
   sm: "py-2.5 px-6 text-sm",
-  md: "py-3.5 px-8 text-base",
-  lg: "py-4 px-10 text-lg",
+  md: "py-3.5 px-8 text-[0.9375rem]",
+  lg: "py-[1.125rem] px-10 text-base sm:text-lg",
 } as const;
 
 /* ── Props ── */
@@ -62,12 +62,13 @@ type ButtonProps = ButtonBaseProps &
 const baseClasses = [
   "inline-flex items-center justify-center",
   "font-[family-name:var(--font-condensed)]",
-  "font-semibold",
-  "uppercase tracking-[0.1em]",
+  "font-black",
+  "uppercase tracking-[0.12em]",
   "transition-all duration-300 ease-in-out",
   "cursor-pointer",
   "disabled:opacity-50 disabled:pointer-events-none",
   "rounded-[var(--radius-brand)]",
+  "shadow-[inset_0_-2px_0_rgba(0,0,0,0.18)]",
 ].join(" ");
 
 /* ── Component ── */

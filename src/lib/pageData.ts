@@ -10,6 +10,8 @@ export interface ProductData {
   gallery: { src: string; alt: string }[];
   excerpt: string;
   badge?: string;
+  seoTitle?: string;
+  seoDescription?: string;
   specs: { label: string; value: string }[];
   description: string;
   features: { title: string; description: string }[];
@@ -211,6 +213,8 @@ export interface NewsArticleData {
   image: string;
   content: string;
   tags: string[];
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
 export const allNews: NewsArticleData[] = [
@@ -293,6 +297,9 @@ export interface VideoData {
   thumbnail: string;
   description: string;
   duration: string;
+  videoUrl?: string;
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
 export const allVideos: VideoData[] = [

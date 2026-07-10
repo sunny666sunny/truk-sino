@@ -48,7 +48,7 @@ export default function WhoWeArePage() {
 
                   {/* Text */}
                   <div>
-                    <h2 className="font-[family-name:var(--font-display)] text-2xl text-[var(--color-ink)] md:text-3xl">
+                    <h2 className="font-[family-name:var(--font-display)] text-lg text-[var(--color-ink)] md:text-xl">
                       {section.heading}
                     </h2>
                     <p className="mt-4 leading-relaxed text-[var(--color-ink-light)]">

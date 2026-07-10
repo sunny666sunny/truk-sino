@@ -1,42 +1,25 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu } from "lucide-react";
-import { useScrollHeader } from "@/hooks";
-import { navLinks } from "@/lib/data";
-
-/* ------------------------------------------------------------------ */
-/*  Types                                                              */
-/* ------------------------------------------------------------------ */
-interface NavChild {
-  label: string;
-  href: string;
-}
-
-interface MegaColumn {
-  title: string;
-  links: NavChild[];
-}
-
-interface NavLinkItem {
-  label: string;
-  href: string;
-  children?: NavChild[];
-  mega?: boolean;
-  megaColumns?: MegaColumn[];
-}
+import { getMergedNavLinks, type EditableNavLink, type NavLinkItem } from "@/lib/navigation";
 
 interface HeaderProps {
   onMenuToggle?: () => void;
+  logo?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+  editableLinks?: EditableNavLink[];
 }
 
-/* ------------------------------------------------------------------ */
-/*  Component                                                          */
-/* ------------------------------------------------------------------ */
-export default function Header({ onMenuToggle }: HeaderProps) {
-  const scrolled = useScrollHeader(50);
+export default function Header({ onMenuToggle, logo, editableLinks }: HeaderProps) {
+  const brandLogo = logo ?? { src: "/images/logo-sinotruk.png", alt: "SINOTRUK", width: 140, height: 56 };
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -49,32 +32,23 @@ export default function Header({ onMenuToggle }: HeaderProps) {
     timeoutRef.current = setTimeout(() => setActiveDropdown(null), 120);
   };
 
-  const links = navLinks as NavLinkItem[];
+  const links: NavLinkItem[] = getMergedNavLinks(editableLinks);
 
   return (
-    <header
-      className={[
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-white/[0.97] h-[70px] shadow-[0_2px_20px_rgba(11,30,54,0.08)]"
-          : "bg-transparent backdrop-blur-sm h-[80px]",
-      ].join(" ")}
-    >
-      <div className="container-main flex items-center justify-between h-full">
-        {/* ── Logo ── */}
-        <a href="/#home" className="flex items-center shrink-0">
+    <header className="fixed left-0 right-0 top-0 z-50 h-[72px] border-b-[4px] border-[var(--color-accent)] bg-[var(--color-brand-900)]/95 shadow-[0_8px_28px_rgba(0,0,0,0.22)] backdrop-blur-sm transition-all duration-300 sm:h-[84px]">
+      <div className="container-main flex h-full items-center justify-between">
+        <Link href="/" className="flex h-full w-[124px] shrink-0 items-center justify-center overflow-hidden sm:w-[136px]">
           <Image
-            src="/images/logo-sinotruk.png"
-            alt="SINOTRUK"
-            width={scrolled ? 120 : 140}
-            height={scrolled ? 48 : 56}
-            className={`object-contain transition-all duration-300 ${scrolled ? "" : "brightness-0 invert"}`}
+            src={brandLogo.src}
+            alt={brandLogo.alt}
+            width={brandLogo.width}
+            height={brandLogo.height}
+            className="h-[64px] w-full object-contain object-center transition-all duration-300 sm:h-[76px]"
             preload
           />
-        </a>
+        </Link>
 
-        {/* ── Desktop nav ── */}
-        <nav className="hidden xl:flex items-center gap-0.5" role="navigation">
+        <nav className="hidden items-center gap-0.5 xl:flex" role="navigation">
           {links.map((link) => {
             const hasDropdown = !!(link.children || link.mega);
             const isOpen = activeDropdown === link.label;
@@ -86,16 +60,13 @@ export default function Header({ onMenuToggle }: HeaderProps) {
                 onMouseEnter={() => hasDropdown && handleMouseEnter(link.label)}
                 onMouseLeave={handleMouseLeave}
               >
-                {/* Trigger */}
-                <a
+                <Link
                   href={link.href}
                   className={[
-                    "flex items-center gap-1 px-3.5 py-2 rounded-[var(--radius-brand)]",
-                    "font-[family-name:var(--font-condensed)] font-semibold text-sm uppercase tracking-wider",
+                    "flex items-center gap-1 px-3.5 py-3 rounded-[var(--radius-brand)]",
+                    "font-[family-name:var(--font-condensed)] font-black text-[0.8125rem] uppercase tracking-[0.12em]",
                     "transition-colors duration-200",
-                    scrolled
-                      ? "text-[var(--color-ink)] hover:text-[var(--color-accent)] hover:bg-[var(--color-accent-soft)]"
-                      : "text-white/85 hover:text-white hover:bg-white/10",
+                    "text-white/88 hover:bg-white/10 hover:text-[var(--color-accent-hover)]",
                   ].join(" ")}
                   aria-haspopup={hasDropdown || undefined}
                   aria-expanded={hasDropdown ? isOpen : undefined}
@@ -108,9 +79,8 @@ export default function Header({ onMenuToggle }: HeaderProps) {
                       className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                     />
                   )}
-                </a>
+                </Link>
 
-                {/* ── Simple dropdown ── */}
                 {link.children && !link.mega && (
                   <AnimatePresence>
                     {isOpen && (
@@ -119,23 +89,22 @@ export default function Header({ onMenuToggle }: HeaderProps) {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -6 }}
                         transition={{ duration: 0.15, ease: "easeOut" }}
-                        className="absolute top-full left-0 mt-1.5 min-w-[210px] bg-white rounded-[var(--radius-brand-lg)] shadow-[var(--shadow-card-hover)] border-t-[3px] border-[var(--color-accent)] p-3 z-50"
+                        className="absolute left-0 top-full z-50 mt-2 min-w-[230px] rounded-[var(--radius-brand)] border-t-[4px] border-[var(--color-accent)] bg-white p-3 shadow-card-hover"
                       >
                         {link.children.map((child) => (
-                          <a
+                          <Link
                             key={child.label}
                             href={child.href}
-                            className="block px-3 py-2 text-[0.8125rem] text-[var(--color-ink)] hover:text-[var(--color-accent)] hover:bg-[var(--color-accent-soft)] rounded-[var(--radius-brand)] transition-colors duration-150"
+                            className="block rounded-[var(--radius-brand)] px-3 py-2.5 text-[0.8125rem] font-bold uppercase tracking-[0.04em] text-[var(--color-ink)] transition-colors duration-150 hover:bg-[var(--color-accent-soft)] hover:text-[var(--color-accent)]"
                           >
                             {child.label}
-                          </a>
+                          </Link>
                         ))}
                       </motion.div>
                     )}
                   </AnimatePresence>
                 )}
 
-                {/* ── Mega menu ── */}
                 {link.mega && link.megaColumns && (
                   <AnimatePresence>
                     {isOpen && (
@@ -144,23 +113,23 @@ export default function Header({ onMenuToggle }: HeaderProps) {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -6 }}
                         transition={{ duration: 0.15, ease: "easeOut" }}
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 min-w-[600px] bg-white rounded-[var(--radius-brand-lg)] shadow-[var(--shadow-card-hover)] border-t-[3px] border-[var(--color-accent)] p-6 z-50"
+                        className="absolute left-1/2 top-full z-50 mt-2 min-w-[660px] -translate-x-1/2 rounded-[var(--radius-brand)] border-t-[4px] border-[var(--color-accent)] bg-white p-7 shadow-card-hover"
                       >
                         <div className="grid grid-cols-3 gap-8">
                           {link.megaColumns.map((col) => (
                             <div key={col.title}>
-                              <h4 className="font-[family-name:var(--font-condensed)] font-bold text-xs uppercase tracking-wider text-[var(--color-accent)] mb-3 pb-2 border-b border-[var(--color-divider)]">
+                              <h4 className="mb-3 border-b border-[var(--color-divider)] pb-2 font-[family-name:var(--font-condensed)] text-xs font-black uppercase tracking-[0.16em] text-[var(--color-accent)]">
                                 {col.title}
                               </h4>
                               <ul className="space-y-0.5">
                                 {col.links.map((item) => (
                                   <li key={item.label}>
-                                    <a
+                                    <Link
                                       href={item.href}
-                                      className="block px-2 py-1.5 text-sm text-[var(--color-ink-light)] hover:text-[var(--color-accent)] hover:bg-[var(--color-accent-soft)] rounded-[var(--radius-brand)] transition-colors duration-150"
+                                      className="block rounded-[var(--radius-brand)] px-2 py-2 text-sm font-bold text-[var(--color-ink-light)] transition-colors duration-150 hover:bg-[var(--color-accent-soft)] hover:text-[var(--color-accent)]"
                                     >
                                       {item.label}
-                                    </a>
+                                    </Link>
                                   </li>
                                 ))}
                               </ul>
@@ -176,15 +145,9 @@ export default function Header({ onMenuToggle }: HeaderProps) {
           })}
         </nav>
 
-        {/* ── Mobile menu toggle ── */}
         <button
           onClick={onMenuToggle}
-          className={[
-            "xl:hidden p-2 rounded-[var(--radius-brand)] transition-colors duration-200",
-            scrolled
-              ? "text-[var(--color-ink)] hover:bg-gray-100"
-              : "text-white hover:bg-white/10",
-          ].join(" ")}
+          className="rounded-[var(--radius-brand)] p-2 text-white transition-colors duration-200 hover:bg-white/10 xl:hidden"
           aria-label="Open menu"
         >
           <Menu size={24} />

@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-import { allProducts, allNews, allVideos, productCategories } from "@/lib/pageData";
-import { partCategories } from "@/lib/data";
+import { getNewsArticles, getProductCategories, getProducts, getVideos } from "@/lib/cmsData";
 
 const SITE_URL = "https://sinotruk.com";
 
@@ -14,10 +13,16 @@ const partSlugs = [
   "other-parts",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date().toISOString();
+  const [productCategories, allProducts, allNews, allVideos] = await Promise.all([
+    getProductCategories(),
+    getProducts(),
+    getNewsArticles(),
+    getVideos(),
+  ]);
 
-  // ── Static pages ──
+  // 鈹€鈹€ Static pages 鈹€鈹€
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}`, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
     { url: `${SITE_URL}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
@@ -36,7 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
   ];
 
-  // ── Product category pages ──
+  // 鈹€鈹€ Product category pages 鈹€鈹€
   const categoryPages: MetadataRoute.Sitemap = productCategories.map((cat) => ({
     url: `${SITE_URL}/products/${cat.slug}`,
     lastModified: now,
@@ -44,7 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // ── Product detail pages ──
+  // 鈹€鈹€ Product detail pages 鈹€鈹€
   const productPages: MetadataRoute.Sitemap = allProducts.map((p) => ({
     url: `${SITE_URL}/products/${p.categorySlug}/${p.slug}`,
     lastModified: now,
@@ -52,7 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // ── News article pages ──
+  // 鈹€鈹€ News article pages 鈹€鈹€
   const newsPages: MetadataRoute.Sitemap = allNews.map((n) => ({
     url: `${SITE_URL}/news/${n.slug}`,
     lastModified: now,
@@ -60,7 +65,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // ── Video pages ──
+  // 鈹€鈹€ Video pages 鈹€鈹€
   const videoPages: MetadataRoute.Sitemap = allVideos.map((v) => ({
     url: `${SITE_URL}/video/${v.slug}`,
     lastModified: now,
@@ -68,7 +73,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  // ── Parts category pages ──
+  // 鈹€鈹€ Parts category pages 鈹€鈹€
   const partsPages: MetadataRoute.Sitemap = partSlugs.map((slug) => ({
     url: `${SITE_URL}/parts/${slug}`,
     lastModified: now,

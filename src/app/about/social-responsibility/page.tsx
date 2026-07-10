@@ -28,8 +28,8 @@ export default function SocialResponsibilityPage() {
         <div className="grid gap-6">
           {pillars.map((pillar, i) => (
             <ScrollReveal key={pillar.title} delay={i * 0.12}>
-              <div className="rounded-[var(--radius-brand-lg)] border-l-4 border-l-[var(--color-accent)] bg-white p-8 shadow-[var(--shadow-card)]">
-                <h2 className="font-[family-name:var(--font-display)] text-2xl text-[var(--color-ink)]">
+              <div className="rounded-[var(--radius-brand-lg)] border-l-4 border-l-[var(--color-accent)] bg-white p-8 shadow-card">
+                <h2 className="font-[family-name:var(--font-display)] text-lg text-[var(--color-ink)]">
                   {pillar.title}
                 </h2>
                 <p className="mt-3 leading-relaxed text-[var(--color-ink-light)]">

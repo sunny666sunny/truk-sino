@@ -4,20 +4,21 @@ import { Play } from "lucide-react";
 import { videos } from "@/lib/data";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import SectionHeader from "@/components/ui/SectionHeader";
+import type { HomeContent } from "@/lib/homeContent";
 
-export default function VideoSection() {
+export default function VideoSection({ content }: { content: HomeContent["video"] }) {
   return (
     <section
       id="video"
-      className="bg-brand-900 py-fluid-2xl"
+      className="bg-[var(--color-brand-900)] py-fluid-2xl"
     >
       <div className="container-main">
         {/* SectionHeader with white overrides for dark background */}
         <div className="mb-fluid-lg [&_h2]:!text-white [&_.section-subtitle]:!text-white/60 [&_.section-tag]:!text-white/80">
           <SectionHeader
-            tag="Video Gallery"
-            title="See SINOTRUK in Action"
-            subtitle="From factory tours to field tests — watch our trucks perform in real-world conditions across every continent."
+            tag={content.tag}
+            title={content.title}
+            subtitle={content.description}
             center
           />
         </div>
@@ -25,7 +26,7 @@ export default function VideoSection() {
         <div className="grid gap-fluid-md md:grid-cols-2 lg:grid-cols-4">
           {videos.map((video, index) => (
             <ScrollReveal key={video.title} delay={index * 0.1}>
-              <Link href={`/video/${video.slug}`} className="group relative block aspect-[16/10] cursor-pointer overflow-hidden rounded-brand-lg">
+              <Link href={`/video/${video.slug}`} className="group relative block aspect-[16/10] cursor-pointer overflow-hidden rounded-[var(--radius-brand)]">
                 {/* Thumbnail */}
                 <Image
                   src={video.thumbnail}
@@ -39,12 +40,12 @@ export default function VideoSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-900/85 via-brand-900/20 to-transparent transition-all duration-500 group-hover:from-accent/85 group-hover:via-accent/20" />
 
                 {/* Play button */}
-                <div className="absolute top-1/2 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white/40 bg-white/20 backdrop-blur-sm transition-all group-hover:scale-110 group-hover:border-accent group-hover:bg-accent">
+                <div className="absolute top-1/2 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[var(--radius-brand)] border-2 border-white/40 bg-white/20 backdrop-blur-sm transition-all group-hover:scale-110 group-hover:border-[var(--color-accent)] group-hover:bg-[var(--color-accent)]">
                   <Play className="h-6 w-6 fill-white text-white" />
                 </div>
 
                 {/* Title */}
-                <span className="absolute bottom-5 left-5 font-condensed text-sm font-semibold uppercase tracking-wider text-white">
+                <span className="absolute bottom-5 left-5 font-condensed text-sm font-black uppercase tracking-wider text-white">
                   {video.title}
                 </span>
               </Link>

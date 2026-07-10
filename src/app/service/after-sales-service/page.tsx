@@ -45,7 +45,7 @@ export default function AfterSalesServicePage() {
                     }`}
                   >
                     <div className={i % 2 === 1 ? "md:[direction:ltr]" : ""}>
-                      <h2 className="font-display text-2xl text-brand-900 md:text-3xl">
+                      <h2 className="font-display text-lg text-brand-900 md:text-xl">
                         {section.heading}
                       </h2>
                       <p className="mt-4 leading-relaxed text-ink-light">

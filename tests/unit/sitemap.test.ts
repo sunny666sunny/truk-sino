@@ -1,20 +1,23 @@
-import { describe, it, expect } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 import sitemap from '@/app/sitemap'
 import { allProducts, allNews, allVideos, productCategories } from '@/lib/pageData'
 
 const SITE_URL = 'https://sinotruk.com'
 
 describe('sitemap', () => {
-  const entries = sitemap()
+  let entries: Awaited<ReturnType<typeof sitemap>>
 
-  // Expected counts
+  beforeAll(async () => {
+    entries = await sitemap()
+  })
+
   const staticPageCount = 15
-  const categoryPageCount = productCategories.length // 6
+  const categoryPageCount = productCategories.length
   const productPageCount = allProducts.length
   const newsPageCount = allNews.length
   const videoPageCount = allVideos.length
-  const partPageCount = 6 // partSlugs hardcoded in sitemap.ts
-  const expectedTotal =
+  const partPageCount = 6
+  const expectedMinimum =
     staticPageCount +
     categoryPageCount +
     productPageCount +
@@ -27,8 +30,8 @@ describe('sitemap', () => {
     expect(entries.length).toBeGreaterThan(0)
   })
 
-  it('has the expected total number of pages', () => {
-    expect(entries.length).toBe(expectedTotal)
+  it('contains at least the fallback static pages', () => {
+    expect(entries.length).toBeGreaterThanOrEqual(expectedMinimum)
   })
 
   it('every entry has loc (url), lastModified, changeFrequency, and priority', () => {

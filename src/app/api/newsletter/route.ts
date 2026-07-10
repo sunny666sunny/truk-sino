@@ -1,17 +1,14 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { writeFile, mkdir, readdir } from "node:fs/promises";
-import path from "node:path";
+import crypto from "node:crypto";
+import { prisma } from "@/lib/prisma-client";
 
-/* ── Schema ── */
 const newsletterSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
 });
 
-/* ── POST /api/newsletter ── */
 export async function POST(req: Request) {
   try {
-    /* Parse body */
     let body: unknown;
     try {
       body = await req.json();
@@ -22,56 +19,27 @@ export async function POST(req: Request) {
       );
     }
 
-    /* Validate */
     const parsed = newsletterSchema.safeParse(body);
 
     if (!parsed.success) {
-      const msg =
-        parsed.error.issues[0]?.message ?? "Invalid email address";
+      const msg = parsed.error.issues[0]?.message ?? "Invalid email address";
       return NextResponse.json(
         { success: false, error: msg },
         { status: 400 },
       );
     }
 
-    const { email } = parsed.data;
-    const dataDir = path.join(process.cwd(), "data", "newsletter");
-    await mkdir(dataDir, { recursive: true });
+    const email = parsed.data.email.toLowerCase().trim();
+    const hash = crypto.createHash("sha256").update(email).digest("hex");
 
-    /* Check for duplicates */
     try {
-      const files = await readdir(dataDir);
-      // Simple dedup: store email hash in filename
-      const emailHash = Buffer.from(email.toLowerCase().trim()).toString(
-        "base64url",
-      );
-      if (files.some((f) => f.includes(emailHash))) {
-        return NextResponse.json(
-          { success: false, error: "This email is already subscribed." },
-          { status: 409 },
-        );
-      }
+      await prisma.newsletterSubscriber.create({ data: { email, hash } });
     } catch {
-      // Directory may be empty or unreadable — continue
+      return NextResponse.json(
+        { success: false, error: "This email is already subscribed." },
+        { status: 409 },
+      );
     }
-
-    /* Store subscription */
-    const createdAt = new Date().toISOString();
-    const emailHash = Buffer.from(email.toLowerCase().trim()).toString(
-      "base64url",
-    );
-    const fileName = `${createdAt.slice(0, 10)}_${emailHash}.json`;
-
-    const record = {
-      email: email.toLowerCase().trim(),
-      subscribedAt: createdAt,
-    };
-
-    await writeFile(
-      path.join(dataDir, fileName),
-      JSON.stringify(record, null, 2),
-      "utf-8",
-    );
 
     return NextResponse.json(
       { success: true, message: "Subscribed successfully!" },

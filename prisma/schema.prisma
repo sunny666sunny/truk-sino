@@ -1,0 +1,154 @@
+// TrukSino / SINOTRUK Admin Database Schema
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// 鈹€鈹€鈹€ Admin Users (Admin Panel Authentication) 鈹€鈹€鈹€
+model AdminUser {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  passwordHash  String
+  role          String    @default("admin") // "admin" | "editor"
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  inquiries     Inquiry[]
+}
+
+// 鈹€鈹€鈹€ Product Categories 鈹€鈹€鈹€
+model ProductCategory {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  name      String
+  icon      String?  // e.g. "Truck", "Cog"
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  products  Product[]
+}
+
+// 鈹€鈹€鈹€ Products 鈹€鈹€鈹€
+model Product {
+  id            String   @id @default(cuid())
+  name          String
+  slug          String   @unique
+  categoryId    String
+  category      ProductCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  subCategory   String?  // e.g. "Dump Truck", "Tractor Truck"
+  status        String   @default("active") // "active" | "discontinued" | "upcoming"
+  heroImage     String?
+  gallery       Json?    // [{"url": "...", "alt": "..."}]
+  excerpt       String?
+  content       Json?    // RichText blocks
+  specifications Json?  // [{"label": "...", "value": "...", "unit": "..."}]
+  features      Json?    // [{"title": "...", "description": "..."}]
+  brochure      String?  // PDF URL
+  sortOrder     Int      @default(0)
+  seoTitle      String?
+  seoDescription String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  relatedIds    String?  // JSON array of related product IDs
+}
+
+// 鈹€鈹€鈹€ News Articles 鈹€鈹€鈹€
+model NewsArticle {
+  id              String   @id @default(cuid())
+  title           String
+  slug            String   @unique
+  author          String   @default("TrukSino Editorial")
+  publishDate     DateTime
+  featuredImage   String?
+  excerpt         String?
+  content         Json?    // RichText blocks
+  tags            String[] // ["product-launch", "company-news", ...]
+  faqs            Json?    // [{"question": "...", "answer": "..."}]
+  relatedSlugs    String?  // JSON array of related article slugs
+  seoTitle        String?
+  seoDescription  String?
+  status          String   @default("published") // "draft" | "published"
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// 鈹€鈹€鈹€ Videos 鈹€鈹€鈹€
+model Video {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String
+  thumbnail     String?
+  videoUrl      String?  // YouTube/Vimeo embed URL or direct MP4
+  duration      String?  // e.g. "3:25"
+  sortOrder     Int      @default(0)
+  seoTitle      String?
+  seoDescription String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// 鈹€鈹€鈹€ Inquiries (Lead Management) 鈹€鈹€鈹€
+model Inquiry {
+  id           String    @id @default(cuid())
+  name         String
+  email        String
+  phone        String?
+  country      String?
+  company      String?
+  productInterest String?
+  quantity     String?
+  message      String
+  recaptchaScore Float?
+  source       String?   // page URL where form was submitted
+  ip           String?
+  status       String    @default("new") // "new" | "in-progress" | "replied" | "closed"
+  note         String?   // internal notes for sales team
+  assignedTo   String?   // admin user ID
+  repliedAt    DateTime?
+  closedAt     DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  userId       String?
+  user         AdminUser? @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
+
+// 鈹€鈹€鈹€ Newsletter Subscribers 鈹€鈹€鈹€
+model NewsletterSubscriber {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  hash        String   @unique // for deduplication
+  subscribedAt DateTime @default(now())
+  unsubscribedAt DateTime?
+  active      Boolean  @default(true)
+}
+
+// 鈹€鈹€鈹€ Site Settings (Global Config) 鈹€鈹€鈹€
+model SiteSetting {
+  id          String   @id @default(cuid())
+  key         String   @unique // "contact_email", "hero_banner", etc.
+  value       Json     // flexible config storage
+  description String?
+  updatedAt   DateTime @updatedAt
+}
+
+// 鈹€鈹€鈹€ Media Library 鈹€鈹€鈹€
+model MediaItem {
+  id          String   @id @default(cuid())
+  name        String
+  url         String
+  thumbprint  String?  // filename suffix for thumbnails
+  mimeType    String
+  size        Int?     // bytes
+  width       Int?
+  height      Int?
+  alt         String?
+  caption     String?
+  uploadedBy  String?  // admin user ID
+  createdAt   DateTime @default(now())
+}
+
