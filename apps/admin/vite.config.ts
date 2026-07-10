@@ -34,7 +34,7 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    allowedHosts: [".trycloudflare.com", ".loca.lt"],
+    allowedHosts: [".trycloudflare.com", ".loca.lt", "sinotrukteam.com", "*.sinotrukteam.com"],
     proxy: {
       "/api": "http://localhost:3000",
       "/uploads": "http://localhost:3000",
