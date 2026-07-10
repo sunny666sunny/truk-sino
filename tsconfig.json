@@ -24,11 +24,21 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "next.config.ts",
+    "postcss.config.mjs",
+    "prisma.config.ts",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "apps/admin",
+    "apps/admin/**",
+    "src/generated",
+    "src/generated/**",
+    ".next",
+    "apps/admin/dist"
+  ]
 }
