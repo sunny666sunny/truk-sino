@@ -5,7 +5,9 @@ import { Link, useNavigate } from "react-router";
 import { ImageUploadField } from "../../components/ImageUploadField";
 import { apiFetch } from "../../lib/api";
 
-const DEFAULT_HOME_CONTENT: Record<string, any> = {
+type JsonObject = Record<string, unknown>;
+
+const DEFAULT_HOME_CONTENT: JsonObject = {
   products: { tag: "Our Product Range", title: "Vehicles Engineered for Every Mission", description: "Explore our complete lineup of commercial vehicles built for global markets." },
   stats: { items: [{ icon: "Globe", value: 90, suffix: "+", label: "Export Countries" }] },
   why: { tag: "Why SINOTRUK", title: "Engineering Advantages That Deliver Results", description: "Core pillars that set SINOTRUK vehicles apart.", items: [{ icon: "Cog", title: "Advanced Powertrain", description: "In-house engines and proven drivetrains for demanding work." }] },
@@ -16,7 +18,7 @@ const DEFAULT_HOME_CONTENT: Record<string, any> = {
   contact: { tag: "Get in Touch", title: "Let's Talk About Your Fleet Needs", description: "Our sales engineers are ready to design the right solution.", formTitle: "Send Us an Inquiry", formDescription: "Fill out the form and our sales team will respond within 24 hours.", headquartersTitle: "Headquarters", officeLabel: "Main Office", address: "No. 777, Jing Shi Road, Jinan, Shandong Province, China", emailLabel: "Email", emails: "info@sinotruk.com\nsales@sinotruk.com", hoursLabel: "Business Hours", hours: "Monday - Saturday, 8:00 AM - 5:30 PM (CST)", regionalTitle: "Regional Offices" },
 };
 
-type SettingsResponse = { home_content?: Record<string, any> };
+type SettingsResponse = { home_content?: JsonObject };
 type SectionKey = "about" | "products" | "parts" | "news" | "service" | "contact";
 
 const sectionMeta: Record<SectionKey, { title: string; desc: string; manageHref?: string; manageLabel?: string }> = {
@@ -79,11 +81,11 @@ function ItemList({ name, title, withImage = false, withSlug = false, numericVal
   );
 }
 
-function setByPath(target: Record<string, any>, path: string[], value: unknown) {
+function setByPath(target: JsonObject, path: string[], value: unknown) {
   let cursor = target;
   for (let i = 0; i < path.length - 1; i += 1) {
     cursor[path[i]] = cursor[path[i]] && typeof cursor[path[i]] === "object" ? cursor[path[i]] : {};
-    cursor = cursor[path[i]];
+    cursor = cursor[path[i]] as JsonObject;
   }
   cursor[path[path.length - 1]] = value;
 }
@@ -101,7 +103,7 @@ function renderFields(section: SectionKey) {
 
 export function FrontendSectionPage({ section }: { section: SectionKey }) {
   const [form] = Form.useForm();
-  const [content, setContent] = useState<Record<string, any>>(DEFAULT_HOME_CONTENT);
+  const [content, setContent] = useState<JsonObject>(DEFAULT_HOME_CONTENT);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const meta = sectionMeta[section];

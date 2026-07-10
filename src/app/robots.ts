@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/api/",
     },
-    sitemap: "https://sinotruk.com/sitemap.xml",
+    sitemap: "https://sinotrukteam.com/sitemap.xml",
   };
 }

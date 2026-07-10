@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "next dev",
-        "build": "prisma generate && next build",
+        "build": "npm run admin:build && prisma generate && next build",
         "start": "next start",
         "lint": "eslint",
         "test": "vitest run",
@@ -15,13 +15,11 @@
         "db:seed": "node --env-file=.env.local --import tsx scripts/seed.mjs",
         "admin:dev": "npm --prefix apps/admin run dev",
         "admin:build": "npm --prefix apps/admin run build",
-        "postinstall": "prisma generate"
+        "postinstall": "prisma generate && npm --prefix apps/admin ci"
     },
     "dependencies": {
-        "@auth/core": "^0.34.3",
         "@hookform/resolvers": "^5.4.0",
         "@prisma/adapter-pg": "^7.8.0",
-        "@prisma/client": "^7.8.0",
         "clsx": "^2.1.1",
         "framer-motion": "^12.42.2",
         "jose": "^6.2.3",
@@ -53,5 +51,9 @@
         "tsx": "^4.23.0",
         "typescript": "^5",
         "vitest": "^4.1.9"
+    },
+    "overrides": {
+        "postcss": "8.5.16",
+        "@hono/node-server": "1.19.13"
     }
 }

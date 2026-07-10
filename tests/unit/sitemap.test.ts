@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import sitemap from '@/app/sitemap'
 import { allProducts, allNews, allVideos, productCategories } from '@/lib/pageData'
 
-const SITE_URL = 'https://sinotruk.com'
+const SITE_URL = 'https://sinotrukteam.com'
 
 describe('sitemap', () => {
   let entries: Awaited<ReturnType<typeof sitemap>>

@@ -9,7 +9,7 @@ import { getHomeContent } from "@/lib/homeContent";
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sinotruk.com"),
+  metadataBase: new URL("https://sinotrukteam.com"),
   title: "SINOTRUK International | China's Leading Heavy Truck Manufacturer & Exporter",
   description:
     "SINOTRUK International manufactures and exports heavy-duty trucks, light trucks, special vehicles, semi-trailers and new energy vehicles to 90+ countries. Request a quote today.",

@@ -6,6 +6,12 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
 
+  async rewrites() {
+    return [
+      { source: "/admin-lucien/:path*", destination: "/admin-lucien/index.html" },
+    ];
+  },
+
   // Image optimization
   images: {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],

@@ -7,7 +7,7 @@ import {
   faqSchema,
 } from '@/lib/structuredData'
 
-const SITE_URL = 'https://sinotruk.com'
+const SITE_URL = 'https://sinotrukteam.com'
 
 describe('organizationSchema', () => {
   const schema = organizationSchema()

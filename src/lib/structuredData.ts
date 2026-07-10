@@ -1,4 +1,4 @@
-const SITE_URL = "https://sinotruk.com";
+const SITE_URL = "https://sinotrukteam.com";
 
 /**
  * Organization schema — appears on every page via root layout.

@@ -15,6 +15,7 @@ const eslintConfig = defineConfig([
     "src/generated/prisma/**",
     "apps/admin/dist/**",
     "apps/admin/node_modules/**",
+    "public/admin-lucien/**",
   ]),
 ]);
 

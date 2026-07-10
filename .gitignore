@@ -64,3 +64,5 @@ cloudflared.exe
 
 /apps/admin/node_modules/
 /apps/admin/.vite/
+
+/public/admin-lucien/
