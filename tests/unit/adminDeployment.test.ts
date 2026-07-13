@@ -30,6 +30,11 @@ describe("admin deployment", () => {
     expect(read(".env.example")).not.toContain("ADMIN_APP_URL");
   });
 
+  it("does not expose administrator bootstrap endpoints", () => {
+    expect(fs.existsSync(path.join(root, "src/app/api/admin/setup/route.ts"))).toBe(false);
+    expect(fs.existsSync(path.join(root, "src/app/api/admin/init/route.ts"))).toBe(false);
+  });
+
   it("uses the production domain for public metadata", () => {
     expect(read("src/app/layout.tsx")).toContain('new URL("https://sinotrukteam.com")');
     expect(read("src/app/sitemap.ts")).toContain('const SITE_URL = "https://sinotrukteam.com"');
